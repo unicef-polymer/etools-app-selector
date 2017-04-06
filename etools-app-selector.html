@@ -1,4 +1,10 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/paper-material/paper-material.html">
+<link rel="import" href="bower_components/paper-styles/color.html">
+<link rel="import" href="bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="app-selector-icons.html">
 
 <!--
 `etools-app-selector`
@@ -8,27 +14,190 @@ App selector menu
 -->
 
 <dom-module id="etools-app-selector">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
-  </template>
+  <style>
+    :host {
+      position: relative;
+      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+    }
 
+    paper-icon-button.apps-button {
+      width: 76px;
+      height: 60px;
+      padding: 12px 24px 12px 24px;
+      color: var(--title-toolbar-secondary-text-color, #C7CED2);
+      border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
+      z-index: 100;
+    }
+
+    paper-icon-button.icon-opened {
+      background: white;
+      color: var(--app-selector-icon-color, rgba(0, 0, 0, 0.87));
+    }
+
+    .container {
+      @apply(--layout-vertical);
+      position: relative;
+    }
+
+    .apps-select {
+      position: absolute;
+      background: var(--primary-element-background, #FFFFFF);
+      top: 60px;
+      z-index: 100;
+      padding: 0;
+    }
+
+    .content-wrapper {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      min-height: 60px;
+      padding: 24px;
+      box-sizing: border-box;
+      font-size: 14px;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .content-wrapper:nth-child(2) {
+      flex-grow: 1;
+    }
+
+    .content-wrapper > a {
+      display: flex;
+      align-items: center;
+    }
+
+    paper-icon-button.panel-icon {
+      width: 85px;
+      height: 85px;
+      padding: 0;
+    }
+
+    .panel {
+      width: 266px;
+    }
+
+    .panel:nth-child(2) {
+      border-right: none;
+    }
+
+    .panel:hover {
+      background: var(--app-selector-item-hover-color, #e8e8e8);
+    }
+
+    .panel-row {
+      @apply(--layout-horizontal);
+    }
+
+    .app-title {
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-left: 16px;
+      line-height: 1.2;
+      cursor: pointer;
+      white-space: normal;
+    }
+    .app-outer {
+      width: 532px;
+      display: block;
+    }
+    .app-inner {
+      display: flex;
+      flex-flow: wrap;
+    }
+
+  </style>
+  <template>
+    <div class="container">
+      <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
+      <iron-collapse id="selector">
+        <paper-material class="apps-select" elevation="5">
+          <div class="content-wrapper">
+            Select an application or repository
+          </div>
+          <div class="app-outer">
+            <div class="app-inner">
+              <template is="dom-repeat" items="[[menuOptions]]" as="app">
+                <div class="panel-row">
+                  <div class="content-wrapper panel">
+                    <a on-tap="goToPage">
+                      <paper-icon-button class="panel-icon"
+                                         icon="[[app.icon]]"></paper-icon-button>
+                    </a>
+                    <a on-tap="goToPage">
+                      <div class="app-title">[[app.title]]</div>
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </paper-material>
+      </iron-collapse>
+    </div>
+  </template>
   <script>
     Polymer({
-
       is: 'etools-app-selector',
-
       properties: {
-        prop1: {
+
+        /**
+         * Class name toggle variable.
+         * Used for styling when dropdown open/closed
+         */
+        opened: {
           type: String,
-          value: 'etools-app-selector',
+          value: '',
         },
+
+        /**
+         * Dropdown menu items to display.
+         *
+         * Example object structure:
+         *
+         *     menuOptions = [{
+         *       title: 'Dashboard',
+         *       icon: 'app-selector-icons: dashIcon',
+         *       url: 'dash'
+         *     }]
+         *
+         * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
+        */
+
+        menuOptions: {
+          type: Array,
+        }
       },
 
+      /**
+       * Toggles the menu opened and closed
+       *
+       */
+      toggleMenu: function() {
+        this.$.selector.toggle();
+        if (this.opened) {
+          this.opened = '';
+        } else {
+          this.opened = 'icon-opened';
+        }
+      },
+
+      /**
+       * Change location to target app url found in menuOptions array items.
+       * Url prop of item should just be app name
+       *
+       * Example:
+       *
+       *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
+       *
+       */
+      goToPage: function(e) {
+        var app = e.model.app;
+         console.log('check', window.location.origin + '/' + app.url + '/' );
+        window.location.href = window.location.origin + '/' + app.url + '/';
+      },
     });
   </script>
 </dom-module>
