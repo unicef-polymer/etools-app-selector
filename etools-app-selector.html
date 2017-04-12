@@ -99,10 +99,12 @@ App selector menu
       cursor: pointer;
       white-space: normal;
     }
+
     .app-outer {
       width: 532px;
       display: block;
     }
+
     .app-inner {
       display: flex;
       flex-flow: wrap;
@@ -164,10 +166,32 @@ App selector menu
          *     }]
          *
          * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
-        */
+         */
 
         menuOptions: {
           type: Array,
+          value: [
+            {
+              title: 'Dashboards',
+              icon: 'app-selector-icons:dashIcon',
+              url: 'dash'
+            },
+            {
+              title: 'Partnership Management',
+              icon: 'app-selector-icons:pmpIcon',
+              url: 'pmp'
+            },
+            {
+              title: 'Trip Management',
+              icon: 'app-selector-icons:tripsIcon',
+              url: 't2f'
+            },
+            {
+              title: 'Admin (Permission Required)',
+              icon: 'app-selector-icons:adminIcon',
+              url: 'admin'
+            },
+          ]
         }
       },
 
@@ -195,7 +219,6 @@ App selector menu
        */
       goToPage: function(e) {
         var app = e.model.app;
-         console.log('check', window.location.origin + '/' + app.url + '/' );
         window.location.href = window.location.origin + '/' + app.url + '/';
       },
     });
