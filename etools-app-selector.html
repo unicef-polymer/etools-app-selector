@@ -64,7 +64,6 @@ App selector menu
     }
 
     .content-wrapper > a {
-      display: flex;
       align-items: center;
     }
 
@@ -112,7 +111,7 @@ App selector menu
 
   </style>
   <template>
-    <div class="container">
+    <div class="container" id="etools-selector">
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
       <iron-collapse id="selector">
         <paper-material class="apps-select" elevation="5">
@@ -195,6 +194,10 @@ App selector menu
         }
       },
 
+      attached: function() {
+        document.addEventListener('click', this._onCaptureClick.bind(this), true);
+      },
+
       /**
        * Toggles the menu opened and closed
        *
@@ -220,6 +223,28 @@ App selector menu
       goToPage: function(e) {
         var app = e.model.app;
         window.location.href = window.location.origin + '/' + app.url + '/';
+      },
+
+      /**
+       * Determine if click is outside of menu, close if true
+       *
+       */
+      _onCaptureClick: function(e) {
+        if (!this._isInPath(Polymer.dom(e).path, 'id', 'etools-selector')) {
+          if (this.$.selector.opened) {
+            this.toggleMenu();
+          }
+        }
+      },
+
+      _isInPath: function(path, prop, value) {
+        path = path || [];
+        for (var i = 0; i < path.length; i++) {
+          if (path[i][prop] === value) {
+            return true;
+          }
+        }
+        return false;
       },
     });
   </script>
