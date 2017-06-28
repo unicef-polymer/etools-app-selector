@@ -68,8 +68,8 @@ App selector menu
     }
 
     paper-icon-button.panel-icon {
-      width: 85px;
-      height: 85px;
+      width: 72px;
+      height: 72px;
       padding: 0;
     }
 
@@ -115,9 +115,6 @@ App selector menu
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
       <iron-collapse id="selector">
         <paper-material class="apps-select" elevation="5">
-          <div class="content-wrapper">
-            Select an application or repository
-          </div>
           <div class="app-outer">
             <div class="app-inner">
               <template is="dom-repeat" items="[[menuOptions]]" as="app">
@@ -184,6 +181,16 @@ App selector menu
               title: 'Trip Management',
               icon: 'app-selector-icons:tripsIcon',
               url: 't2f'
+            },
+            {
+              title: 'Third Party Management',
+              icon: 'app-selector-icons:tpmIcon',
+              url: 'tpm'
+            },
+            {
+              title: 'Auditor Portal',
+              icon: 'app-selector-icons:auditorIcon',
+              url: 'auditor'
             },
             {
               title: 'Admin (Permission Required)',
