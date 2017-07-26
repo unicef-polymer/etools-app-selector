@@ -16,22 +16,28 @@ App selector menu
 <dom-module id="etools-app-selector">
   <style>
     :host {
+      display: inline-block;
       position: relative;
       color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+
+      --paper-icon-button: {
+        box-sizing: content-box !important;
+      }
     }
 
     paper-icon-button.apps-button {
-      width: 76px;
-      height: 60px;
-      padding: 12px 24px 12px 24px;
-      color: var(--title-toolbar-secondary-text-color, #C7CED2);
+      @apply(--layout-horizontal);
+      width: 24px;
+      height: 24px;
+      padding: 18px 24px 18px 24px;
+      color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
       border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
       z-index: 100;
     }
 
     paper-icon-button.icon-opened {
-      background: white;
-      color: var(--app-selector-icon-color, rgba(0, 0, 0, 0.87));
+      background: #ffffff;
+      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
     }
 
     .container {
