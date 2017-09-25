@@ -129,11 +129,11 @@ App selector menu
               <template is="dom-repeat" items="[[menuOptions]]" as="app">
                 <div class="panel-row">
                   <div class="content-wrapper panel">
-                    <a on-tap="goToPage">
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]">
                       <paper-icon-button class="panel-icon"
                                          icon="[[app.icon]]"></paper-icon-button>
                     </a>
-                    <a on-tap="goToPage">
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]">
                       <div class="app-title">[[app.title]]</div>
                     </a>
                   </div>
@@ -218,6 +218,15 @@ App selector menu
       },
 
       /**
+      * Navigate window to path if ctrl/command are not pressed
+      */
+      manageClickEvent: function(e, path) {
+        if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey){
+          window.location.href = path;
+        }
+      },
+      
+      /**
        * Change location to target app url found in menuOptions array items.
        * Url prop of item should just be app name
        *
@@ -226,9 +235,11 @@ App selector menu
        *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
        *
        */
+
       goToPage: function(e) {
-        var app = e.model.app;
-        window.location.href = window.location.origin + '/' + app.url + '/';
+        var path = [window.location.origin, e.target.getAttribute('app-name'),
+        e.target.getAttribute('page')].join('/') + '/' + e.target.id;
+        this.manageClickEvent(e, path);
       },
 
       /**
