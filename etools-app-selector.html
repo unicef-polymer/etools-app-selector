@@ -115,6 +115,11 @@ App selector menu
       flex-flow: wrap;
     }
 
+    a, a:link, a:visited, a:hover, a:active {
+      color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
+      text-decoration: none;
+    }
+
   </style>
   <template>
     <div class="container" id="etools-selector">
@@ -129,11 +134,11 @@ App selector menu
               <template is="dom-repeat" items="[[menuOptions]]" as="app">
                 <div class="panel-row">
                   <div class="content-wrapper panel">
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]">
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <paper-icon-button class="panel-icon"
                                          icon="[[app.icon]]"></paper-icon-button>
                     </a>
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]">
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <div class="app-title">[[app.title]]</div>
                     </a>
                   </div>
@@ -242,8 +247,7 @@ App selector menu
        */
 
       goToPage: function(e) {
-        var path = [window.location.origin, e.target.getAttribute('app-name'),
-        e.target.getAttribute('page')].join('/') + '/' + e.target.id;
+        var path = window.location.origin + '/' + e.model.app.url + '/';
         this.manageClickEvent(e, path);
       },
 
