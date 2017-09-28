@@ -115,6 +115,11 @@ App selector menu
       flex-flow: wrap;
     }
 
+    a, a:link, a:visited, a:hover, a:active {
+      color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
+      text-decoration: none;
+    }
+
   </style>
   <template>
     <div class="container" id="etools-selector">
@@ -129,11 +134,11 @@ App selector menu
               <template is="dom-repeat" items="[[menuOptions]]" as="app">
                 <div class="panel-row">
                   <div class="content-wrapper panel">
-                    <a on-tap="goToPage">
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <paper-icon-button class="panel-icon"
                                          icon="[[app.icon]]"></paper-icon-button>
                     </a>
-                    <a on-tap="goToPage">
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <div class="app-title">[[app.title]]</div>
                     </a>
                   </div>
@@ -149,6 +154,11 @@ App selector menu
     Polymer({
       is: 'etools-app-selector',
       properties: {
+
+        baseSite: {
+          type: String,
+          value: window.location.origin,
+        },
 
         /**
          * Class name toggle variable.
@@ -218,6 +228,15 @@ App selector menu
       },
 
       /**
+      * Navigate window to path if ctrl/command are not pressed
+      */
+      manageClickEvent: function(e, path) {
+        if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey){
+          window.location.href = path;
+        }
+      },
+
+      /**
        * Change location to target app url found in menuOptions array items.
        * Url prop of item should just be app name
        *
@@ -226,9 +245,10 @@ App selector menu
        *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
        *
        */
+
       goToPage: function(e) {
-        var app = e.model.app;
-        window.location.href = window.location.origin + '/' + app.url + '/';
+        var path = window.location.origin + '/' + e.model.app.url + '/';
+        this.manageClickEvent(e, path);
       },
 
       /**
