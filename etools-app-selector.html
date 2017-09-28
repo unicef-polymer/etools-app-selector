@@ -150,6 +150,11 @@ App selector menu
       is: 'etools-app-selector',
       properties: {
 
+        baseSite: {
+          type: String,
+          value: window.location.origin,
+        },
+
         /**
          * Class name toggle variable.
          * Used for styling when dropdown open/closed
@@ -225,7 +230,7 @@ App selector menu
           window.location.href = path;
         }
       },
-      
+
       /**
        * Change location to target app url found in menuOptions array items.
        * Url prop of item should just be app name
