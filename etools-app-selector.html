@@ -170,6 +170,15 @@ App selector menu
         },
 
         /**
+          * Show or hide Auditor Portal (temp solution)
+          *
+        */
+        showAp: {
+          type: Boolean,
+          value: false,
+        },
+
+        /**
          * Dropdown menu items to display.
          *
          * Example object structure:
@@ -206,7 +215,14 @@ App selector menu
               icon: 'app-selector-icons:adminIcon',
               url: 'admin'
             },
-          ]
+          ],
+          notify: true,
+        }
+      },
+
+      ready: function() {
+        if (this.showAp) {
+          this._addApPanel();
         }
       },
 
@@ -231,7 +247,7 @@ App selector menu
       * Navigate window to path if ctrl/command are not pressed
       */
       manageClickEvent: function(e, path) {
-        if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey){
+        if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey) {
           window.location.href = path;
         }
       },
@@ -255,12 +271,25 @@ App selector menu
        * Determine if click is outside of menu, close if true
        *
        */
+    
       _onCaptureClick: function(e) {
         if (!this._isInPath(Polymer.dom(e).path, 'id', 'etools-selector')) {
           if (this.$.selector.opened) {
             this.toggleMenu();
           }
         }
+      },
+
+      /**
+        * Add Auditor Portal as a menu option when bool passed as a prop
+        *
+        */
+      _addApPanel: function() {
+        this.splice('menuOptions', 3, 0, {
+          title: 'Auditor Portal',
+            icon: 'app-selector-icons:auditor',
+            url: 'ap'
+        });
       },
 
       _isInPath: function(path, prop, value) {
