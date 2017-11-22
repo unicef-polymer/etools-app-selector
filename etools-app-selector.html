@@ -176,6 +176,7 @@ App selector menu
         showAp: {
           type: Boolean,
           value: false,
+          observer: '_addApPanel'
         },
 
         /**
@@ -284,12 +285,14 @@ App selector menu
         * Add Auditor Portal as a menu option when bool passed as a prop
         *
         */
-      _addApPanel: function() {
-        this.splice('menuOptions', 3, 0, {
-          title: 'Auditor Portal',
-            icon: 'app-selector-icons:auditor',
-            url: 'ap'
-        });
+      _addApPanel: function(show) {
+          if (show) {
+            this.splice('menuOptions', 3, 0, {
+            title: 'Auditor Portal',
+              icon: 'app-selector-icons:auditor',
+              url: 'ap'
+            });
+          }
       },
 
       _isInPath: function(path, prop, value) {
