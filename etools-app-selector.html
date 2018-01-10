@@ -1,9 +1,11 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-collapse/iron-collapse.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-styles/element-styles/paper-material-styles.html">
 <link rel="import" href="app-selector-icons.html">
 
 <!--
@@ -14,244 +16,257 @@ App selector menu
 -->
 
 <dom-module id="etools-app-selector">
-  <style>
-    :host {
-      display: inline-block;
-      position: relative;
-      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
-
-      --paper-icon-button: {
-        box-sizing: content-box !important;
-      }
-    }
-
-    paper-icon-button.apps-button {
-      @apply(--layout-horizontal);
-      width: 24px;
-      height: 24px;
-      padding: 18px 24px 18px 24px;
-      color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
-      border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
-      z-index: 100;
-    }
-
-    paper-icon-button.icon-opened {
-      background: #ffffff;
-      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
-    }
-
-    .container {
-      @apply(--layout-vertical);
-      position: relative;
-    }
-
-    .apps-select {
-      position: absolute;
-      background: var(--primary-element-background, #FFFFFF);
-      top: 60px;
-      z-index: 100;
-      padding: 0;
-    }
-
-    .content-wrapper {
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-      min-height: 60px;
-      padding: 24px;
-      box-sizing: border-box;
-      font-size: 14px;
-      white-space: nowrap;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-      border-right: 1px solid rgba(0, 0, 0, 0.12);
-    }
-
-    .content-wrapper:nth-child(2) {
-      flex-grow: 1;
-    }
-
-    .content-wrapper > a {
-      align-items: center;
-    }
-
-    paper-icon-button.panel-icon {
-      width: 85px;
-      height: 85px;
-      padding: 0;
-    }
-
-    .panel {
-      width: 266px;
-    }
-
-    .panel:nth-child(2) {
-      border-right: none;
-    }
-
-    .panel:hover {
-      background: var(--app-selector-item-hover-color, #e8e8e8);
-    }
-
-    .panel-row {
-      @apply(--layout-horizontal);
-    }
-
-    .app-title {
-      font-size: 16px;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-left: 16px;
-      line-height: 1.2;
-      cursor: pointer;
-      white-space: normal;
-    }
-
-    .app-outer {
-      width: 532px;
-      display: block;
-    }
-
-    .app-inner {
-      display: flex;
-      flex-flow: wrap;
-    }
-
-    a, a:link, a:visited, a:hover, a:active {
-      color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
-      text-decoration: none;
-    }
-
-  </style>
   <template>
+     <custom-style>
+      <style is="custom-style" include="paper-material-styles">
+        :host {
+          display: inline-block;
+          position: relative;
+          color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+
+          --paper-icon-button: {
+            box-sizing: content-box !important;
+          };
+        }
+
+        div [elevation="5"] {
+          @apply --paper-material-elevation-5;
+        }
+
+        paper-icon-button.apps-button {
+          @apply --layout-horizontal;
+          width: 72px;
+          height: 60px;
+          padding: 18px 24px 18px 24px;
+          color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+          border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
+          z-index: 100;
+        }
+
+        paper-icon-button.icon-opened {
+          background: #ffffff;
+          color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+        }
+
+        .container {
+          @apply --layout-vertical;
+          position: relative;
+        }
+
+        .apps-select {
+          position: absolute;
+          background: var(--primary-element-background, #FFFFFF);
+          top: 60px;
+          z-index: 100;
+          padding: 0;
+        }
+
+        .content-wrapper {
+          @apply --layout-horizontal;
+          @apply --layout-center;
+          min-height: 60px;
+          padding: 24px;
+          box-sizing: border-box;
+          font-size: 14px;
+          white-space: nowrap;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+          border-right: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        .content-wrapper:nth-child(2) {
+          flex-grow: 1;
+        }
+
+        .content-wrapper > a {
+          align-items: center;
+        }
+
+        paper-icon-button.panel-icon {
+          width: 85px;
+          height: 85px;
+          padding: 0;
+        }
+
+        .panel {
+          width: 266px;
+        }
+
+        .panel:nth-child(2) {
+          border-right: none;
+        }
+
+        .panel:hover {
+          background: var(--app-selector-item-hover-color, #e8e8e8);
+        }
+
+        .panel-row {
+          @apply --layout-horizontal;
+        }
+
+        .app-title {
+          font-size: 16px;
+          text-transform: uppercase;
+          font-weight: 500;
+          margin-left: 16px;
+          line-height: 1.2;
+          cursor: pointer;
+          white-space: normal;
+        }
+
+        .app-outer {
+          width: 532px;
+          display: block;
+        }
+
+        .app-inner {
+          display: flex;
+          flex-flow: wrap;
+        }
+
+        a, a:link, a:visited, a:hover, a:active {
+          color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
+          text-decoration: none;
+        }
+
+      </style>
+    </custom-style>
     <div class="container" id="etools-selector">
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
-      <iron-collapse id="selector">
-        <paper-material class="apps-select" elevation="5">
-          <div class="content-wrapper">
-            Select an application or repository
-          </div>
-          <div class="app-outer">
-            <div class="app-inner">
-              <template is="dom-repeat" items="[[menuOptions]]" as="app">
-                <div class="panel-row">
-                  <div class="content-wrapper panel">
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                      <paper-icon-button class="panel-icon"
-                                         icon="[[app.icon]]"></paper-icon-button>
-                    </a>
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                      <div class="app-title">[[app.title]]</div>
-                    </a>
-                  </div>
-                </div>
-              </template>
+      <div  elevation="5">
+        <iron-collapse id="selector">
+            <div class="content-wrapper">
+              Select an application or repository
             </div>
-          </div>
-        </paper-material>
-      </iron-collapse>
+            <div class="app-outer">
+              <div class="app-inner">
+                <template is="dom-repeat" items="[[menuOptions]]" as="app">
+                  <div class="panel-row">
+                    <div class="content-wrapper panel">
+                      <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
+                        <paper-icon-button class="panel-icon"
+                                          icon="[[app.icon]]"></paper-icon-button>
+                      </a>
+                      <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
+                        <div class="app-title">[[app.title]]</div>
+                      </a>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+        </iron-collapse>
+      </div>
     </div>
   </template>
   <script>
-    Polymer({
-      is: 'etools-app-selector',
-      properties: {
+    'use strict'
+    class EtoolsAppSelector extends Polymer.Element {
+      static get is() {
+        return 'etools-app-selector';
+      }
+      static get properties() {
+        return {
 
-        baseSite: {
-          type: String,
-          value: window.location.origin,
-        },
+          baseSite: {
+            type: String,
+            value: window.location.origin,
+          },
 
-        /**
-         * Class name toggle variable.
-         * Used for styling when dropdown open/closed
-         */
-        opened: {
-          type: String,
-          value: '',
-        },
+          /**
+          * Class name toggle variable.
+          * Used for styling when dropdown open/closed
+          */
+          opened: {
+            type: String,
+            value: '',
+          },
 
-        /**
-          * Show or hide Auditor Portal (temp solution)
+          /**
+            * Show or hide Auditor Portal (temp solution)
+            *
+          */
+          showAp: {
+            type: Boolean,
+            value: false,
+            observer: '_addApPanel'
+          },
+
+          /**
+          * Dropdown menu items to display.
           *
-        */
-        showAp: {
-          type: Boolean,
-          value: false,
-          observer: '_addApPanel'
-        },
+          * Example object structure:
+          *
+          *     menuOptions = [{
+          *       title: 'Dashboard',
+          *       icon: 'app-selector-icons: dashIcon',
+          *       url: 'dash'
+          *     }]
+          *
+          * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
+          */
 
-        /**
-         * Dropdown menu items to display.
-         *
-         * Example object structure:
-         *
-         *     menuOptions = [{
-         *       title: 'Dashboard',
-         *       icon: 'app-selector-icons: dashIcon',
-         *       url: 'dash'
-         *     }]
-         *
-         * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
-         */
-
-        menuOptions: {
-          type: Array,
-          value: [
-            {
-              title: 'Dashboards',
-              icon: 'app-selector-icons:dashIcon',
-              url: 'dash'
-            },
-            {
-              title: 'Partnership Management',
-              icon: 'app-selector-icons:pmpIcon',
-              url: 'pmp'
-            },
-            {
-              title: 'Trip Management',
-              icon: 'app-selector-icons:tripsIcon',
-              url: 't2f'
-            },
-            {
-              title: 'Admin (Permission Required)',
-              icon: 'app-selector-icons:adminIcon',
-              url: 'admin'
-            },
-          ],
-          notify: true,
+          menuOptions: {
+            type: Array,
+            value: [
+              {
+                title: 'Dashboards',
+                icon: 'app-selector-icons:dashIcon',
+                url: 'dash'
+              },
+              {
+                title: 'Partnership Management',
+                icon: 'app-selector-icons:pmpIcon',
+                url: 'pmp'
+              },
+              {
+                title: 'Trip Management',
+                icon: 'app-selector-icons:tripsIcon',
+                url: 't2f'
+              },
+              {
+                title: 'Admin (Permission Required)',
+                icon: 'app-selector-icons:adminIcon',
+                url: 'admin'
+              },
+            ],
+            notify: true,
+          }
         }
-      },
+      }
 
-      ready: function() {
+      ready() {
+        super.ready();
         if (this.showAp) {
           this._addApPanel();
         }
-      },
+      }
 
-      attached: function() {
+      connectedCallback() {
+        super.connectedCallback();
         document.addEventListener('click', this._onCaptureClick.bind(this), true);
-      },
+      }
 
       /**
        * Toggles the menu opened and closed
        *
        */
-      toggleMenu: function() {
+      toggleMenu() {
         this.$.selector.toggle();
         if (this.opened) {
           this.opened = '';
         } else {
           this.opened = 'icon-opened';
         }
-      },
+      }
 
       /**
       * Navigate window to path if ctrl/command are not pressed
       */
-      manageClickEvent: function(e, path) {
+      manageClickEvent(e, path) {
         if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey) {
           window.location.href = path;
         }
-      },
+      }
 
       /**
        * Change location to target app url found in menuOptions array items.
@@ -262,30 +277,28 @@ App selector menu
        *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
        *
        */
-
-      goToPage: function(e) {
+      goToPage(e) {
         var path = window.location.origin + '/' + e.model.app.url + '/';
         this.manageClickEvent(e, path);
-      },
+      }
 
       /**
        * Determine if click is outside of menu, close if true
        *
        */
-    
-      _onCaptureClick: function(e) {
-        if (!this._isInPath(Polymer.dom(e).path, 'id', 'etools-selector')) {
+      _onCaptureClick(e) {
+        if (!this._isInPath(e.composedPath(), 'id', 'etools-selector')) {
           if (this.$.selector.opened) {
             this.toggleMenu();
           }
         }
-      },
+      }
 
       /**
         * Add Auditor Portal as a menu option when bool passed as a prop
         *
         */
-      _addApPanel: function(show) {
+      _addApPanel(show) {
           if (show) {
             this.splice('menuOptions', 3, 0, {
             title: 'Auditor Portal',
@@ -293,9 +306,9 @@ App selector menu
               url: 'ap'
             });
           }
-      },
+      }
 
-      _isInPath: function(path, prop, value) {
+      _isInPath(path, prop, value) {
         path = path || [];
         for (var i = 0; i < path.length; i++) {
           if (path[i][prop] === value) {
@@ -303,7 +316,9 @@ App selector menu
           }
         }
         return false;
-      },
-    });
+      }
+    }
+
+    customElements.define(EtoolsAppSelector.is, EtoolsAppSelector);
   </script>
 </dom-module>
