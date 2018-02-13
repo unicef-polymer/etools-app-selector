@@ -1,5 +1,5 @@
-<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
@@ -17,7 +17,7 @@ App selector menu
 
 <dom-module id="etools-app-selector">
   <template>
-     <custom-style>
+    <custom-style>
       <style is="custom-style" include="paper-material-styles">
         :host {
           display: inline-block;
@@ -132,38 +132,40 @@ App selector menu
     </custom-style>
     <div class="container" id="etools-selector">
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
-      <div  elevation="5">
+      <div elevation="5">
         <iron-collapse id="selector">
-            <div class="content-wrapper">
-              Select an application or repository
-            </div>
-            <div class="app-outer">
-              <div class="app-inner">
-                <template is="dom-repeat" items="[[menuOptions]]" as="app">
-                  <div class="panel-row">
-                    <div class="content-wrapper panel">
-                      <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                        <paper-icon-button class="panel-icon"
-                                          icon="[[app.icon]]"></paper-icon-button>
-                      </a>
-                      <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                        <div class="app-title">[[app.title]]</div>
-                      </a>
-                    </div>
+          <div class="content-wrapper">
+            Select an application or repository
+          </div>
+          <div class="app-outer">
+            <div class="app-inner">
+              <template is="dom-repeat" items="[[menuOptions]]" as="app">
+                <div class="panel-row">
+                  <div class="content-wrapper panel">
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
+                      <paper-icon-button class="panel-icon"
+                                         icon="[[app.icon]]"></paper-icon-button>
+                    </a>
+                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
+                      <div class="app-title">[[app.title]]</div>
+                    </a>
                   </div>
-                </template>
-              </div>
+                </div>
+              </template>
             </div>
+          </div>
         </iron-collapse>
       </div>
     </div>
   </template>
   <script>
     'use strict'
+
     class EtoolsAppSelector extends Polymer.Element {
       static get is() {
         return 'etools-app-selector';
       }
+
       static get properties() {
         return {
 
@@ -173,18 +175,18 @@ App selector menu
           },
 
           /**
-          * Class name toggle variable.
-          * Used for styling when dropdown open/closed
-          */
+           * Class name toggle variable.
+           * Used for styling when dropdown open/closed
+           */
           opened: {
             type: String,
             value: '',
           },
 
           /**
-            * Show or hide Auditor Portal (temp solution)
-            *
-          */
+           * Show or hide Auditor Portal (temp solution)
+           *
+           */
           showAp: {
             type: Boolean,
             value: false,
@@ -192,18 +194,18 @@ App selector menu
           },
 
           /**
-          * Dropdown menu items to display.
-          *
-          * Example object structure:
-          *
-          *     menuOptions = [{
+           * Dropdown menu items to display.
+           *
+           * Example object structure:
+           *
+           *     menuOptions = [{
           *       title: 'Dashboard',
           *       icon: 'app-selector-icons: dashIcon',
           *       url: 'dash'
           *     }]
-          *
-          * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
-          */
+           *
+           * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
+           */
 
           menuOptions: {
             type: Array,
@@ -260,8 +262,8 @@ App selector menu
       }
 
       /**
-      * Navigate window to path if ctrl/command are not pressed
-      */
+       * Navigate window to path if ctrl/command are not pressed
+       */
       manageClickEvent(e, path) {
         if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey) {
           window.location.href = path;
@@ -295,17 +297,17 @@ App selector menu
       }
 
       /**
-        * Add Auditor Portal as a menu option when bool passed as a prop
-        *
-        */
+       * Add Auditor Portal as a menu option when bool passed as a prop
+       *
+       */
       _addApPanel(show) {
-          if (show) {
-            this.splice('menuOptions', 3, 0, {
+        if (show) {
+          this.splice('menuOptions', 3, 0, {
             title: 'Auditor Portal',
-              icon: 'app-selector-icons:auditor',
-              url: 'ap'
-            });
-          }
+            icon: 'app-selector-icons:auditor',
+            url: 'ap'
+          });
+        }
       }
 
       _isInPath(path, prop, value) {
