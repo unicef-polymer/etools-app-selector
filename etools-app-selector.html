@@ -41,6 +41,7 @@ App selector menu
           color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
           border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
           z-index: 100;
+          box-sizing: border-box !important;
         }
 
         paper-icon-button.icon-opened {
@@ -132,8 +133,8 @@ App selector menu
     </custom-style>
     <div class="container" id="etools-selector">
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
-      <div elevation="5">
-        <iron-collapse id="selector" class="apps-select">
+      <iron-collapse id="selector" class="apps-select">
+        <div elevation="5">
           <div class="content-wrapper">
             Select an application or repository
           </div>
@@ -144,7 +145,7 @@ App selector menu
                   <div class="content-wrapper panel">
                     <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <paper-icon-button class="panel-icon"
-                                         icon="[[app.icon]]"></paper-icon-button>
+                                          icon="[[app.icon]]"></paper-icon-button>
                     </a>
                     <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <div class="app-title">[[app.title]]</div>
@@ -154,8 +155,8 @@ App selector menu
               </template>
             </div>
           </div>
-        </iron-collapse>
-      </div>
+        </div>
+      </iron-collapse>
     </div>
   </template>
   <script>
