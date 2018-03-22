@@ -176,7 +176,6 @@ App selector menu
         showAp: {
           type: Boolean,
           value: false,
-          observer: '_addApPanel'
         },
 
         /**
@@ -221,14 +220,9 @@ App selector menu
         }
       },
 
-      ready: function() {
-        if (this.showAp) {
-          this._addApPanel();
-        }
-      },
-
       attached: function() {
         document.addEventListener('click', this._onCaptureClick.bind(this), true);
+        this._addApPanel(this.showAp);
       },
 
       /**
