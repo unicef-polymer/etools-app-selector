@@ -272,7 +272,7 @@ App selector menu
        * Determine if click is outside of menu, close if true
        *
        */
-    
+
       _onCaptureClick: function(e) {
         if (!this._isInPath(Polymer.dom(e).path, 'id', 'etools-selector')) {
           if (this.$.selector.opened) {
@@ -288,7 +288,7 @@ App selector menu
       _addApPanel: function(show) {
           if (show) {
             this.splice('menuOptions', 3, 0, {
-            title: 'Auditor Portal',
+            title: 'Financial Assurance Module',
               icon: 'app-selector-icons:auditor',
               url: 'ap'
             });
