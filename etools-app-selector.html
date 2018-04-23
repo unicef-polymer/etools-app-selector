@@ -160,7 +160,7 @@ App selector menu
     </div>
   </template>
   <script>
-    'use strict'
+    'use strict';
 
     class EtoolsAppSelector extends Polymer.Element {
       static get is() {
@@ -172,7 +172,7 @@ App selector menu
 
           baseSite: {
             type: String,
-            value: window.location.origin,
+            value: window.location.origin
           },
 
           /**
@@ -181,7 +181,7 @@ App selector menu
            */
           opened: {
             type: String,
-            value: '',
+            value: ''
           },
 
           /**
@@ -230,11 +230,11 @@ App selector menu
                 title: 'Admin (Permission Required)',
                 icon: 'app-selector-icons:adminIcon',
                 url: 'admin'
-              },
+              }
             ],
-            notify: true,
+            notify: true
           }
-        }
+        };
       }
 
       ready() {
