@@ -10,6 +10,9 @@
     <script src="../../web-component-tester/browser.js"></script>
 
     <link rel="import" href="../etools-app-selector.html">
+    <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html">
+    <link rel="import" href="../../iron-test-helpers/mock-interactions.html">
+
   </head>
   <body>
     <test-fixture id="basic">
@@ -20,9 +23,35 @@
 
     <script>
       suite('etools-app-selector', function() {
+        let basic;
+        setup(function() {
+          basic = fixture('basic');
+        });
         test('instantiating the element works', function() {
-          var element = fixture('basic');
-          assert.equal(element.is, 'etools-app-selector');
+          assert.equal(basic.is, 'etools-app-selector');
+        });
+        test('menu toggles open', function() {
+          let selector = Polymer.dom(basic.root).querySelector('.apps-button')
+          MockInteractions.tap(selector)
+          expect(selector.className).includes('icon-opened');
+        });
+        test('menu toggles closed', function() {
+          let selector = Polymer.dom(basic.root).querySelector('.apps-button')
+          MockInteractions.tap(selector)
+          MockInteractions.tap(selector)
+          expect(selector.className).to.not.include('icon-opened');
+        });
+        test('links are attached to menu options', function(done) {
+          let selector = Polymer.dom(basic.root).querySelector('.apps-button')
+          MockInteractions.tap(selector)
+          Polymer.dom.flush()
+          done()
+          let app = Polymer.dom(basic.root).querySelectorAll('a')
+          expect(
+            app[0].href
+          ).to.be(
+            basic.properties.baseSite.value + '/' + basic.properties.menuOptions.value[0].url
+          );
         });
       });
     </script>
