@@ -11,20 +11,19 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../etools-app-selector.html">
-
-    <style is="custom-style" include="demo-pages-shared-styles">
-      :root {
-        --demo-snippet-demo: {
-          background: #5DC9CD;
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        html {
+          --demo-snippet-demo: {
+            background: #5DC9CD;
+          };
         }
-      }
-      #app-selector-container {
-        background: #2A3C46;
-      }
-      etools-app-selector {
+        #app-selector-container {
+          background: rgb(207, 212, 214);
+        }
 
-      }
-    </style>
+      </style>
+    </custom-style>
   </head>
   <body>
     <div class="vertical-section-container centered">

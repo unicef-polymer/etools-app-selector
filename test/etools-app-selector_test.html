@@ -22,7 +22,7 @@
       suite('etools-app-selector', function() {
         test('instantiating the element works', function() {
           var element = fixture('basic');
-          assert.equal(element.is, 'etools-app-selector');
+          epect(element).to.not.equal(undefined);
         });
       });
     </script>
