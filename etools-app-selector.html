@@ -29,10 +29,6 @@ App selector menu
           };
         }
 
-        div[elevation="5"] {
-          @apply --paper-material-elevation-5;
-        }
-
         paper-icon-button.apps-button {
           @apply --layout-horizontal;
           width: 24px;
@@ -134,7 +130,7 @@ App selector menu
     <div class="container" id="etools-selector">
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
       <iron-collapse id="selector" class="apps-select">
-        <div elevation="5">
+        <div class="paper-material" elevation="5">
           <div class="content-wrapper">
             Select an application or repository
           </div>
