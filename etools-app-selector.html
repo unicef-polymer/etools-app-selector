@@ -145,7 +145,7 @@ App selector menu
                   <div class="content-wrapper panel">
                     <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <paper-icon-button class="panel-icon"
-                                          icon="[[app.icon]]"></paper-icon-button>
+                                         icon="[[app.icon]]"></paper-icon-button>
                     </a>
                     <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
                       <div class="app-title">[[app.title]]</div>
@@ -162,6 +162,10 @@ App selector menu
   <script>
     'use strict';
 
+    /**
+     * @polymer
+     * @customElement
+     */
     class EtoolsAppSelector extends Polymer.Element {
       static get is() {
         return 'etools-app-selector';

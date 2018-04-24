@@ -15,7 +15,7 @@
     "new-cap": [
       "error",
       {
-        "capIsNewExceptions": ["Polymer", "ListItemUtils", "MissingOptions", "CommonFunctionality"],
+        "capIsNewExceptions": ["Polymer"],
         "capIsNewExceptionPattern": "^Etools.."
       }
     ],
@@ -31,7 +31,6 @@
     "moment": true,
     "Promise": true,
     "Polymer": true,
-    "EtoolsLogsMixin": true,
-    "EsmmMixins": true
+    "EtoolsLogsMixin": true
   }
 }
