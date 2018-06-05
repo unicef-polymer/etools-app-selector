@@ -6,12 +6,13 @@
 
     <title>etools-app-selector demo</title>
 
-    <script src="../..//webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../etools-app-selector.html">
-    <custom-style>
+    <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+    <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
+    <script type="module" src="../etools-app-selector.js"></script>
+
+
       <style is="custom-style" include="demo-pages-shared-styles">
         html {
           --demo-snippet-demo: {
@@ -21,9 +22,13 @@
         #app-selector-container {
           background: rgb(207, 212, 214);
         }
+        .centered {
+          max-width: 900px;
+          margin: 0 auto;
+        }
 
       </style>
-    </custom-style>
+
   </head>
   <body>
     <div class="vertical-section-container centered">
@@ -31,10 +36,11 @@
       <demo-snippet>
         <template>
           <div id="app-selector-container">
-            <etools-app-selector show-ap></etools-app-selector>
+            <etools-app-selector show-ap=""></etools-app-selector>
           </div>
         </template>
       </demo-snippet>
     </div>
+
   </body>
 </html>
