@@ -173,11 +173,11 @@ App selector menu
           * Show or hide Auditor Portal (temp solution)
           *
         */
-        showAp: {
-          type: Boolean,
-          value: false,
-          observer: '_addApPanel'
-        },
+        // showAp: {
+        //   type: Boolean,
+        //   value: false,
+        //   observer: '_addApPanel'
+        // },
 
         /**
          * Dropdown menu items to display.
@@ -212,6 +212,16 @@ App selector menu
               url: 't2f'
             },
             {
+              title: 'Financial Assurance Module',
+              icon: 'app-selector-icons:famIcon',
+              url: 'ap'
+            },
+            {
+              title: 'Third Party Monitoring',
+              icon: 'app-selector-icons:tpmIcon',
+              url: 'tpm'
+            },
+            {
               title: 'Admin (Permission Required)',
               icon: 'app-selector-icons:adminIcon',
               url: 'admin'
@@ -222,9 +232,9 @@ App selector menu
       },
 
       ready: function() {
-        if (this.showAp) {
-          this._addApPanel();
-        }
+        // if (this.showAp) {
+        //   this._addApPanel();
+        // }
       },
 
       attached: function() {
@@ -285,15 +295,15 @@ App selector menu
         * Add Auditor Portal as a menu option when bool passed as a prop
         *
         */
-      _addApPanel: function(show) {
-          if (show) {
-            this.splice('menuOptions', 3, 0, {
-            title: 'Auditor Portal',
-              icon: 'app-selector-icons:auditor',
-              url: 'ap'
-            });
-          }
-      },
+      // _addApPanel: function(show) {
+      //     if (show) {
+      //       this.splice('menuOptions', 3, 0, {
+      //       title: 'Auditor Portal',
+      //         icon: 'app-selector-icons:auditor',
+      //         url: 'ap'
+      //       });
+      //     }
+      // },
 
       _isInPath: function(path, prop, value) {
         path = path || [];
