@@ -1,10 +1,3 @@
-/**
-
- App selector menu
-
- @demo demo/index.html
- */
-
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 
 import '@polymer/polymer/lib/elements/dom-repeat.js';
@@ -19,6 +12,9 @@ import './app-selector-icons.js';
 
 /**
  * `etools-app-selector`
+ *
+ * App selector menu
+ *
  * @polymer
  * @customElement
  * @demo demo/index.html
@@ -285,7 +281,7 @@ class EtoolsAppSelector extends PolymerElement {
    *
    */
   goToPage(e) {
-    var path = window.location.origin + '/' + e.model.app.url + '/';
+    let path = window.location.origin + '/' + e.model.app.url + '/';
     this.manageClickEvent(e, path);
   }
 
