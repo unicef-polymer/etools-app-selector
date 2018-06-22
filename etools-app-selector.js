@@ -1,11 +1,11 @@
 /**
 
-App selector menu
+ App selector menu
 
-@demo demo/index.html
-*/
+ @demo demo/index.html
+ */
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
@@ -25,144 +25,146 @@ import './app-selector-icons.js';
  */
 class EtoolsAppSelector extends PolymerElement {
   static get template() {
+    // language=HTML
     return html`
-    <custom-style>
-      <style is="custom-style" include="paper-material-styles">
-        :host {
-          display: inline-block;
-          position: relative;
-          color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+      <custom-style>
+        <style is="custom-style" include="paper-material-styles">
+          :host {
+            display: inline-block;
+            position: relative;
+            color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
 
-          --paper-icon-button: {
+            --paper-icon-button: {
+              box-sizing: content-box !important;
+            };
+          }
+
+          paper-icon-button.apps-button {
+            @apply --layout-horizontal;
+            width: 24px;
+            height: 24px;
+            padding: 18px 24px 18px 24px;
+            color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+            border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
+            z-index: 100;
             box-sizing: content-box !important;
-          };
-        }
+          }
 
-        paper-icon-button.apps-button {
-          @apply --layout-horizontal;
-          width: 24px;
-          height: 24px;
-          padding: 18px 24px 18px 24px;
-          color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
-          border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
-          z-index: 100;
-          box-sizing: content-box !important;
-        }
+          paper-icon-button.icon-opened {
+            background: #ffffff;
+            color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+          }
 
-        paper-icon-button.icon-opened {
-          background: #ffffff;
-          color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
-        }
+          .container {
+            @apply --layout-vertical;
+            position: relative;
+          }
 
-        .container {
-          @apply --layout-vertical;
-          position: relative;
-        }
+          .apps-select {
+            position: absolute;
+            background: var(--primary-element-background, #FFFFFF);
+            top: 60px;
+            z-index: 100;
+            padding: 0;
+          }
 
-        .apps-select {
-          position: absolute;
-          background: var(--primary-element-background, #FFFFFF);
-          top: 60px;
-          z-index: 100;
-          padding: 0;
-        }
+          .content-wrapper {
+            @apply --layout-horizontal;
+            @apply --layout-center;
+            min-height: 60px;
+            padding: 24px;
+            box-sizing: border-box;
+            font-size: 14px;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            border-right: 1px solid rgba(0, 0, 0, 0.12);
+          }
 
-        .content-wrapper {
-          @apply --layout-horizontal;
-          @apply --layout-center;
-          min-height: 60px;
-          padding: 24px;
-          box-sizing: border-box;
-          font-size: 14px;
-          white-space: nowrap;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-          border-right: 1px solid rgba(0, 0, 0, 0.12);
-        }
+          .content-wrapper:nth-child(2) {
+            flex-grow: 1;
+          }
 
-        .content-wrapper:nth-child(2) {
-          flex-grow: 1;
-        }
+          .content-wrapper > a {
+            align-items: center;
+          }
 
-        .content-wrapper > a {
-          align-items: center;
-        }
+          paper-icon-button.panel-icon {
+            width: 85px;
+            height: 85px;
+            padding: 0;
+          }
 
-        paper-icon-button.panel-icon {
-          width: 85px;
-          height: 85px;
-          padding: 0;
-        }
+          .panel {
+            width: 266px;
+          }
 
-        .panel {
-          width: 266px;
-        }
+          .panel:nth-child(2) {
+            border-right: none;
+          }
 
-        .panel:nth-child(2) {
-          border-right: none;
-        }
+          .panel:hover {
+            background: var(--app-selector-item-hover-color, #e8e8e8);
+          }
 
-        .panel:hover {
-          background: var(--app-selector-item-hover-color, #e8e8e8);
-        }
+          .panel-row {
+            @apply --layout-horizontal;
+          }
 
-        .panel-row {
-          @apply --layout-horizontal;
-        }
+          .app-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-left: 16px;
+            line-height: 1.2;
+            cursor: pointer;
+            white-space: normal;
+          }
 
-        .app-title {
-          font-size: 16px;
-          text-transform: uppercase;
-          font-weight: 500;
-          margin-left: 16px;
-          line-height: 1.2;
-          cursor: pointer;
-          white-space: normal;
-        }
+          .app-outer {
+            width: 532px;
+            display: block;
+          }
 
-        .app-outer {
-          width: 532px;
-          display: block;
-        }
+          .app-inner {
+            display: flex;
+            flex-flow: wrap;
+          }
 
-        .app-inner {
-          display: flex;
-          flex-flow: wrap;
-        }
+          a, a:link, a:visited, a:hover, a:active {
+            color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
+            text-decoration: none;
+          }
 
-        a, a:link, a:visited, a:hover, a:active {
-          color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
-          text-decoration: none;
-        }
-
-      </style>
-    </custom-style>
-    <div class="container" id="etools-selector">
-      <paper-icon-button on-tap="toggleMenu" class\$="apps-button [[opened]]" icon="apps"></paper-icon-button>
-      <iron-collapse id="selector" class="apps-select">
-        <div class="paper-material" elevation="5">
-          <div class="content-wrapper">
-            Select an application or repository
-          </div>
-          <div class="app-outer">
-            <div class="app-inner">
-              <template is="dom-repeat" items="[[menuOptions]]" as="app">
-                <div class="panel-row">
-                  <div class="content-wrapper panel">
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                      <paper-icon-button class="panel-icon" icon="[[app.icon]]"></paper-icon-button>
-                    </a>
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                      <div class="app-title">[[app.title]]</div>
-                    </a>
+        </style>
+      </custom-style>
+      <div class="container" id="etools-selector">
+        <paper-icon-button on-tap="toggleMenu" class\$="apps-button [[opened]]" icon="apps"></paper-icon-button>
+        <iron-collapse id="selector" class="apps-select">
+          <div class="paper-material" elevation="5">
+            <div class="content-wrapper">
+              Select an application or repository
+            </div>
+            <div class="app-outer">
+              <div class="app-inner">
+                <template is="dom-repeat" items="[[menuOptions]]" as="app">
+                  <div class="panel-row">
+                    <div class="content-wrapper panel">
+                      <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
+                        <paper-icon-button class="panel-icon"
+                                           icon="[[app.icon]]"></paper-icon-button>
+                      </a>
+                      <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
+                        <div class="app-title">[[app.title]]</div>
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </template>
+                </template>
+              </div>
             </div>
           </div>
-        </div>
-      </iron-collapse>
-    </div>
-`;
+        </iron-collapse>
+      </div>
+    `;
   }
 
   static get is() {

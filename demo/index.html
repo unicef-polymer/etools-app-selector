@@ -1,46 +1,48 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>etools-app-selector demo</title>
+  <title>etools-app-selector demo</title>
 
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-    <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-    <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
-    <script type="module" src="../etools-app-selector.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
+  <script type="module" src="../etools-app-selector.js"></script>
 
 
-      <style is="custom-style" include="demo-pages-shared-styles">
-        html {
-          --demo-snippet-demo: {
-            background: #5DC9CD;
-          };
-        }
-        #app-selector-container {
-          background: rgb(207, 212, 214);
-        }
-        .centered {
-          max-width: 900px;
-          margin: 0 auto;
-        }
+  <style is="custom-style" include="demo-pages-shared-styles">
+    html {
+      --demo-snippet-demo: {
+        background: #5DC9CD;
+      };
+    }
 
-      </style>
+    #app-selector-container {
+      background: rgb(207, 212, 214);
+    }
 
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic etools-app-selector demo</h3>
-      <demo-snippet>
-        <template>
-          <div id="app-selector-container">
-            <etools-app-selector show-ap=""></etools-app-selector>
-          </div>
-        </template>
-      </demo-snippet>
-    </div>
+    .centered {
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-  </body>
+  </style>
+
+</head>
+<body>
+<div class="vertical-section-container centered">
+  <h3>Basic etools-app-selector demo</h3>
+  <demo-snippet>
+    <template>
+      <div id="app-selector-container">
+        <etools-app-selector show-ap=""></etools-app-selector>
+      </div>
+    </template>
+  </demo-snippet>
+</div>
+
+</body>
 </html>
