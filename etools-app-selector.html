@@ -33,6 +33,7 @@ App selector menu
       color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
       border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
       z-index: 100;
+      box-sizing: content-box !important;
     }
 
     paper-icon-button.icon-opened {
@@ -57,9 +58,22 @@ App selector menu
       @apply(--layout-horizontal);
       @apply(--layout-center);
       min-height: 60px;
-      padding: 24px;
+      padding: 24px 4px;
       box-sizing: border-box;
       font-size: 14px;
+      text-align: center;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .content-wrapper-2 {
+      @apply(--layout-center);
+      display: flex;
+      padding-left: 25px;
+      height: 37px;
+      box-sizing: border-box;
+      font-size: 12px;
       white-space: nowrap;
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       border-right: 1px solid rgba(0, 0, 0, 0.12);
@@ -74,13 +88,14 @@ App selector menu
     }
 
     paper-icon-button.panel-icon {
-      width: 85px;
-      height: 85px;
+      width: 72px;
+      height: 72px;
       padding: 0;
     }
 
     .panel {
-      width: 266px;
+      width: 120px;
+      display: block;
     }
 
     .panel:nth-child(2) {
@@ -88,7 +103,7 @@ App selector menu
     }
 
     .panel:hover {
-      background: var(--app-selector-item-hover-color, #e8e8e8);
+      background: var(--app-selector-item-hover-color, #eeeeee);
     }
 
     .panel-row {
@@ -96,18 +111,36 @@ App selector menu
     }
 
     .app-title {
-      font-size: 16px;
+      font-size: 12px;
       text-transform: uppercase;
       font-weight: 500;
-      margin-left: 16px;
+      padding-top: 6px;
+      text-align: center;
       line-height: 1.2;
       cursor: pointer;
       white-space: normal;
     }
 
     .app-outer {
-      width: 532px;
+      width: 360px;
       display: block;
+    }
+
+    iron-icon.admin-icon {
+      --iron-icon-height: 20px;
+      --iron-icon-width: 20px;
+      --iron-icon-fill-color: #9e9e9e;
+      padding-right: 4px;
+    }
+
+    .weight-500 {
+      font-weight: 500;
+      padding-right: 4px;
+    }
+
+    .display-flex {
+      display: flex;
+      align-items: center;
     }
 
     .app-inner {
@@ -124,11 +157,8 @@ App selector menu
   <template>
     <div class="container" id="etools-selector">
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
-      <iron-collapse id="selector">
-        <paper-material class="apps-select" elevation="5">
-          <div class="content-wrapper">
-            Select an application or repository
-          </div>
+      <iron-collapse id="selector" class="apps-select">
+        <div class="paper-material" elevation="5">
           <div class="app-outer">
             <div class="app-inner">
               <template is="dom-repeat" items="[[menuOptions]]" as="app">
@@ -146,7 +176,15 @@ App selector menu
               </template>
             </div>
           </div>
-        </paper-material>
+          <div class="content-wrapper-2">
+            <a class="display-flex" on-tap="goToPage" href="[[baseSite]]/admin">
+              <iron-icon class="admin-icon" 
+                                 icon="admin-icon:adminIcon">
+              </iron-icon>
+              <span class="weight-500">ADMIN</span>(PERMISSION REQUIRED)
+            </a>
+          </div>
+        </div>
       </iron-collapse>
     </div>
   </template>
@@ -168,16 +206,6 @@ App selector menu
           type: String,
           value: '',
         },
-
-        /**
-          * Show or hide Auditor Portal (temp solution)
-          *
-        */
-        // showAp: {
-        //   type: Boolean,
-        //   value: false,
-        //   observer: '_addApPanel'
-        // },
 
         /**
          * Dropdown menu items to display.
@@ -222,19 +250,13 @@ App selector menu
               url: 'tpm'
             },
             {
-              title: 'Admin (Permission Required)',
-              icon: 'app-selector-icons:adminIcon',
-              url: 'admin'
+              title: 'Action Points',
+              icon: 'app-selector-icons:apdIcon',
+              url: 'apd'
             },
           ],
           notify: true,
         }
-      },
-
-      ready: function() {
-        // if (this.showAp) {
-        //   this._addApPanel();
-        // }
       },
 
       attached: function() {
@@ -295,15 +317,6 @@ App selector menu
         * Add Auditor Portal as a menu option when bool passed as a prop
         *
         */
-      // _addApPanel: function(show) {
-      //     if (show) {
-      //       this.splice('menuOptions', 3, 0, {
-      //       title: 'Auditor Portal',
-      //         icon: 'app-selector-icons:auditor',
-      //         url: 'ap'
-      //       });
-      //     }
-      // },
 
       _isInPath: function(path, prop, value) {
         path = path || [];
