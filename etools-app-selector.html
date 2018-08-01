@@ -59,12 +59,24 @@ App selector menu
         }
 
         .content-wrapper {
-          @apply --layout-horizontal;
+          /* @apply --layout-horizontal; */
           @apply --layout-center;
           min-height: 60px;
-          padding: 24px;
+          padding: 24px 4px;
           box-sizing: border-box;
           font-size: 14px;
+          text-align: center;
+          white-space: nowrap;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+          border-right: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        .content-wrapper-2 {
+          @apply --layout-center;
+          display: flex;
+          height: 37px;
+          box-sizing: border-box;
+          font-size: 12px;
           white-space: nowrap;
           border-bottom: 1px solid rgba(0, 0, 0, 0.12);
           border-right: 1px solid rgba(0, 0, 0, 0.12);
@@ -79,13 +91,14 @@ App selector menu
         }
 
         paper-icon-button.panel-icon {
-          width: 85px;
-          height: 85px;
+          width: 72px;
+          height: 72px;
           padding: 0;
         }
 
         .panel {
-          width: 266px;
+          /* width: 266px; */
+          width: 120px;
         }
 
         .panel:nth-child(2) {
@@ -93,7 +106,7 @@ App selector menu
         }
 
         .panel:hover {
-          background: var(--app-selector-item-hover-color, #e8e8e8);
+          background: var(--app-selector-item-hover-color, #eeeeee);
         }
 
         .panel-row {
@@ -101,18 +114,25 @@ App selector menu
         }
 
         .app-title {
-          font-size: 16px;
+          font-size: 12px;
           text-transform: uppercase;
           font-weight: 500;
-          margin-left: 16px;
+          padding-top: 6px;
+          text-align: center;
           line-height: 1.2;
           cursor: pointer;
           white-space: normal;
         }
 
         .app-outer {
-          width: 532px;
+          /* width: 532px; */
+          width: 360px;
           display: block;
+        }
+
+        .admin-icon {
+          height: 16px;
+          width: 16px;
         }
 
         .app-inner {
@@ -131,9 +151,9 @@ App selector menu
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
       <iron-collapse id="selector" class="apps-select">
         <div class="paper-material" elevation="5">
-          <div class="content-wrapper">
+          <!-- <div class="content-wrapper">
             Select an application or repository
-          </div>
+          </div> -->
           <div class="app-outer">
             <div class="app-inner">
               <template is="dom-repeat" items="[[menuOptions]]" as="app">
@@ -150,6 +170,14 @@ App selector menu
                 </div>
               </template>
             </div>
+          </div>
+          <div class="content-wrapper-2">
+            <a on-tap="goToPage" href="[[baseSite]]/admin">
+              <paper-icon-button class="admin-icon" 
+                                 icon="app-selector-icons:adminIcon">
+              </paper-icon-button>
+              <b>ADMIN</b> (PERMISSION REQUIRED)
+            </a>
           </div>
         </div>
       </iron-collapse>
@@ -228,9 +256,9 @@ App selector menu
                 url: 'tpm'
               },
               {
-                title: 'Admin (Permission Required)',
-                icon: 'app-selector-icons:adminIcon',
-                url: 'admin'
+                title: 'Action Points',
+                icon: 'app-selector-icons:apdIcon',
+                url: 'apd'
               }
             ],
             notify: true
