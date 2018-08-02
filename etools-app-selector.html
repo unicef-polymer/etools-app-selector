@@ -16,10 +16,6 @@ App selector menu
 <dom-module id="etools-app-selector">
   <style>
     :host {
-      display: inline-block;
-      position: relative;
-      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
-
       --paper-icon-button: {
         box-sizing: content-box !important;
       }
@@ -79,14 +75,6 @@ App selector menu
       border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
 
-    .content-wrapper:nth-child(2) {
-      flex-grow: 1;
-    }
-
-    .content-wrapper > a {
-      align-items: center;
-    }
-
     paper-icon-button.panel-icon {
       width: 72px;
       height: 72px;
@@ -98,18 +86,14 @@ App selector menu
       display: block;
     }
 
-    .panel:nth-child(2) {
-      border-right: none;
-    }
-
     .panel:hover {
       background: var(--app-selector-item-hover-color, #eeeeee);
     }
 
     .panel-row {
-      @apply(--layout-horizontal);
+      @apply --layout-horizontal;
     }
-
+    
     .app-title {
       font-size: 12px;
       text-transform: uppercase;
@@ -179,7 +163,7 @@ App selector menu
           <div class="content-wrapper-2">
             <a class="display-flex" on-tap="goToPage" href="[[baseSite]]/admin">
               <iron-icon class="admin-icon" 
-                                 icon="admin-icon:adminIcon">
+                         icon="admin-icon:adminIcon">
               </iron-icon>
               <span class="weight-500">ADMIN</span>(PERMISSION REQUIRED)
             </a>
@@ -312,11 +296,6 @@ App selector menu
           }
         }
       },
-
-      /**
-        * Add Auditor Portal as a menu option when bool passed as a prop
-        *
-        */
 
       _isInPath: function(path, prop, value) {
         path = path || [];
