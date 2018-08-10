@@ -1,6 +1,6 @@
 {
   "name": "etools-app-selector",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "App selector menu",
   "main": "etools-app-selector.html",
   "dependencies": {
