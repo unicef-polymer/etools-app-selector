@@ -142,7 +142,7 @@ App selector menu
       </style>
     </custom-style>
     <div class="container" id="etools-selector">
-      <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
+      <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]] etools-app-selector" icon="apps"></paper-icon-button>
       <iron-collapse id="selector" class="apps-select">
         <div class="paper-material" elevation="5">
           <div class="app-outer">
@@ -164,7 +164,7 @@ App selector menu
           </div>
           <div class="content-wrapper-2">
             <a class="display-flex" on-tap="goToAdmin" href="[[baseSite]]/admin/">
-              <iron-icon class="admin-icon" 
+              <iron-icon class="admin-icon"
                                  icon="admin-icon:adminIcon">
               </iron-icon>
               <span class="weight-500">ADMIN</span>(PERMISSION REQUIRED)
