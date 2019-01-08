@@ -2,13 +2,13 @@
   "description": "App selector menu",
   "name": "etools-app-selector",
   "devDependencies": {
+    "@polymer/iron-component-page": "^3.0.0-pre.21",
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.0",
     "eslint-plugin-html": "^2.0.0",
-    "@polymer/iron-component-page": "^3.0.0-pre.18",
-    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
-    "wct-browser-legacy": "^0.0.1-pre.11",
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+    "wct-browser-legacy": "^0.0.1-pre.11"
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint && exit 0",

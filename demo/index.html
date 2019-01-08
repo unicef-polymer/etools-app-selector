@@ -12,37 +12,29 @@
   <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
   <script type="module" src="../etools-app-selector.js"></script>
 
-
-  <style is="custom-style" include="demo-pages-shared-styles">
-    html {
-      --demo-snippet-demo: {
-        background: #5DC9CD;
-      };
-    }
-
-    #app-selector-container {
-      background: rgb(207, 212, 214);
-    }
-
-    .centered {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-  </style>
-
-</head>
-<body>
-<div class="vertical-section-container centered">
-  <h3>Basic etools-app-selector demo</h3>
-  <demo-snippet>
-    <template>
-      <div id="app-selector-container">
-        <etools-app-selector show-ap=""></etools-app-selector>
-      </div>
-    </template>
-  </demo-snippet>
-</div>
-
-</body>
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        html {
+          --demo-snippet-demo: {
+            background: #5DC9CD;
+          };
+        }
+        #app-selector-container {
+          background: rgb(207, 212, 214);
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic etools-app-selector demo</h3>
+      <demo-snippet>
+        <template>
+          <div id="app-selector-container">
+            <etools-app-selector></etools-app-selector>
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
 </html>
