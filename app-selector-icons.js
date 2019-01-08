@@ -2,7 +2,6 @@ import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
 import {html} from '@polymer/polymer/polymer-element.js';
 
-
 export const dashIcon = html`<svg id="dashIcon" height="72" viewBox="0 0 72 72" width="72">
         <g id="dashIcon">
         <polygon id="Shape" fill="#009A54" points="0,0 72,0 72,72 0,72"></polygon>
