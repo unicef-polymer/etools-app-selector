@@ -7,7 +7,8 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-styles/element-styles/paper-material-styles.js';
-import {dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon, apdIcon, adminIcon, etoolsLogo, unppLogo} from './app-selector-icons.js';
+import {dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon,
+        apdIcon, adminIcon, etoolsLogo, unppLogo} from './app-selector-icons.js';
 
 
 /**
@@ -17,6 +18,7 @@ import {dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon, apdIcon, adminIcon, etoo
  *
  * @polymer
  * @customElement
+ * @extends {PolymerElement}
  * @demo demo/index.html
  */
 class EtoolsAppSelector extends PolymerElement {
@@ -136,17 +138,12 @@ class EtoolsAppSelector extends PolymerElement {
             flex-flow: wrap;
           }
 
-          .logo-section {
-            width: 120px;
-          }  
-
           .unpp-section {
             background-color: rgb(76, 121, 179);
             display: flex;
             align-items: center;
-            width: 100%;
+            width: 240px;
             height: 100%;
-            padding-left: 8px;
           }
 
           .logo {
@@ -180,21 +177,18 @@ class EtoolsAppSelector extends PolymerElement {
 
         </style>
       </custom-style>
+
       <div class="container" id="etools-selector">
         <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
         <iron-collapse id="selector" class="apps-select">
           <div class="paper-material" elevation="5">
             <div class="top-content">
-              <div class="logo-section">
-                <div class="logo">
-                  ${etoolsLogo}
-                </div>
+              <div class="panel">
+                <span class="logo">${etoolsLogo}</span>
               </div>
               <a class="unpp-section"
                  href="https://www.unpartnerportal.org/login" target="_blank">
-                <div class="logo">
-                  ${unppLogo}
-                </div>
+                <span class="logo">${unppLogo}</span>
               </a>
             </div>
             
@@ -237,7 +231,9 @@ class EtoolsAppSelector extends PolymerElement {
               </a>
               <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
               <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-                <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank"><span class="weight-500">DATAMART</span></a>
+                <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank">
+                  <span class="weight-500">DATAMART</span>
+                </a>
               </a> -->
             </div>
           </div>

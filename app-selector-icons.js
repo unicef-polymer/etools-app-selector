@@ -73,12 +73,9 @@ export const apdIcon = html`<svg height="72" viewBox="0 0 72 72" width="72">
       <polygon id="Shape" fill="#FFFFFF" points="39.3265185 22.9320262 38.5466667 19 21 19 21 52.4222222 24.8992593 52.4222222 24.8992593 38.6601307 35.8171852 38.6601307 36.597037 42.5921569 50.2444444 42.5921569 50.2444444 22.9320262"></polygon></g></svg>`;
 
 export const unppLogo = html `<svg width="104px" height="32px" viewBox="0 0 104 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <title>UNPP logo</title>
-      <desc>Created with Sketch.</desc>
-      <defs></defs>
-      <g id="unpp" viewBox="0 0 104 32" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <g id="new-app-selector-" transform="translate(-286.000000, -269.000000)">
-      <g id="App-dropdown---w/-UNPP" transform="translate(150.000000, 203.000000)">
+      <g viewBox="0 0 104 32" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g transform="translate(-286.000000, -269.000000)">
+      <g transform="translate(150.000000, 203.000000)">
       <g id="UNPP-logo" transform="translate(136.000000, 66.000000)">
       <path d="M48,0 L49.6912648,0 L49.6912648,4.08256454 C49.6912648,5.04120474 50.2903639,5.70110086 51.511747,5.70110086 C52.7096361,5.70110086 53.3087352,5.04120474 53.3087352,4.08256454 L53.3087352,0 L55,0 L55,4.12380805 C55,5.83514226 53.8843402,7 51.511747,7 C49.1156598,7 48,5.82483138 48,4.13411892 L48,0" id="Fill-1" fill="#FFFFFF"></path>
       <polyline id="Fill-2" fill="#FFFFFF" points="57.6649766 2.29843738 57.6649766 7 56 7 56 0 57.7118861 0 61.3350234 4.53362008 61.3350234 0 63 0 63 7 61.3936602 7 57.6649766 2.29843738"></polyline>
