@@ -327,8 +327,9 @@ App selector menu
         this.manageClickEvent(e, path);
       },
 
-      goToAdmin: function(){
-        window.location.assign(window.location.origin + '/admin/');
+      goToAdmin: function(e){
+        var path = window.location.origin + '/admin/';
+        this.manageClickEvent(e, path);
       },
 
       /**
