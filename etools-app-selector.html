@@ -205,7 +205,7 @@ App selector menu
             </div>
           </div>
           <div class="content-wrapper-2">
-            <a class="display-flex admin" on-tap="goToAdmin" href="[[baseSite]]/admin/">
+            <a class="display-flex admin" on-tap="goToAdmin" href="/admin/">
               <iron-icon class="bottom-icon"
                          icon="admin-icon:adminIcon">
               </iron-icon>
@@ -348,8 +348,9 @@ App selector menu
         this.manageClickEvent(e, path);
       }
 
-      goToAdmin() {
-        window.location.assign(window.location.origin + '/admin/');
+      goToAdmin(e) {
+        var path = window.location.origin + '/admin/';
+        this.manageClickEvent(e, path)
       }
 
       /**
