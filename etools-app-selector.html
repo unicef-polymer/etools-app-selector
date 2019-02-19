@@ -313,6 +313,7 @@ App selector menu
       */
       manageClickEvent: function(e, path) {
         if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey) {
+          window.history.pushState({}, null, path);
           window.location.href = path;
         }
       },
