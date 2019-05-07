@@ -308,6 +308,7 @@ class EtoolsAppSelector extends PolymerElement {
    *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
    *
    */
+  //TODO - method doesn't seem to be needed anymore, remove when 100% confirmed
   goToPage(e) {
     if(e && e.model && e.model.app && e.model.app.url){
       let path = window.location.origin + '/' + e.model.app.url + '/';
