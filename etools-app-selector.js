@@ -193,45 +193,45 @@ class EtoolsAppSelector extends PolymerElement {
             </div>
             
             <div class="etools-apps">
-              <a class="content-wrapper panel" on-tap="goToPage" href="[[baseSite]]/dash/">
+              <a class="content-wrapper panel" href="[[baseSite]]/dash/">
                   ${dashIcon}
                 <div class="app-title">Dashboards</div>
               </a>
           
-              <a class="content-wrapper panel" on-tap="goToPage" href="[[baseSite]]/pmp/">
+              <a class="content-wrapper panel" href="[[baseSite]]/pmp/">
                   ${pmpIcon}
                 <div class="app-title">Partnership Management</div>
               </a>
           
-              <a class="content-wrapper panel" on-tap="goToPage" href="[[baseSite]]/t2f/">
+              <a class="content-wrapper panel" href="[[baseSite]]/t2f/">
                   ${tripsIcon}
                 <div class="app-title">Trip Management</div>
               </a>
           
-              <a class="content-wrapper panel" on-tap="goToPage" href="[[baseSite]]/ap/">
+              <a class="content-wrapper panel" href="[[baseSite]]/ap/">
                   ${famIcon}
                 <div class="app-title">Financial Assurance</div>
               </a>
           
-              <a class="content-wrapper panel" on-tap="goToPage" href="[[baseSite]]/tpm/">
+              <a class="content-wrapper panel" href="[[baseSite]]/tpm/">
                   ${tpmIcon}
                 <div class="app-title">Third Party Monitoring</div>
               </a>
           
-              <a class="content-wrapper panel" on-tap="goToPage" href="[[baseSite]]/apd/">
+              <a class="content-wrapper panel" href="[[baseSite]]/apd/">
                   ${apdIcon}
                 <div class="app-title">Action Points</div>
               </a>
             </div>
             
             <div class="content-wrapper-2">
-              <a class="display-flex admin" on-tap="goToPage" href="[[baseSite]]/admin/">
+              <a class="display-flex admin" href="[[baseSite]]/admin/">
                   ${adminIcon}
                 <span class="weight-500">ADMIN</span>(Permission Required)
               </a>
               <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
               <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-                <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank">
+                <a href="https://datamart.unicef.io" target="_blank">
                   <span class="weight-500">DATAMART</span>
                 </a>
               </a> -->
@@ -308,9 +308,12 @@ class EtoolsAppSelector extends PolymerElement {
    *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
    *
    */
+  //TODO - method doesn't seem to be needed anymore, remove when 100% confirmed
   goToPage(e) {
-    let path = window.location.origin + '/' + e.model.app.url + '/';
-    this.manageClickEvent(e, path);
+    if(e && e.model && e.model.app && e.model.app.url){
+      let path = window.location.origin + '/' + e.model.app.url + '/';
+      this.manageClickEvent(e, path);
+    }
   }
 
   /**
