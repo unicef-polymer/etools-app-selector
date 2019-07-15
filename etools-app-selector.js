@@ -287,7 +287,7 @@ class EtoolsAppSelector extends PolymerElement {
       },
       user: {
         type: Object,
-        observer: 'setShit'
+        observer: 'showIcons'
       }
     };
   }
@@ -304,7 +304,7 @@ class EtoolsAppSelector extends PolymerElement {
     document.addEventListener('click', this._onCaptureClick.bind(this), true);
   }
 
-  setShit() {
+  showIcons() {
     // check if User object is populated
     if (Object.keys(this.user).length === 0 && this.user.constructor === Object) { return; }
 
