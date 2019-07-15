@@ -1,5 +1,5 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-
+import '@polymer/polymer/lib/elements/dom-if.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-styles/color.js';
@@ -193,35 +193,59 @@ class EtoolsAppSelector extends PolymerElement {
             </div>
             
             <div class="etools-apps">
-              <a class="content-wrapper panel" href="[[baseSite]]/dash/">
-                  ${dashIcon}
-                <div class="app-title">Dashboards</div>
-              </a>
+              <dom-if id="dash">
+                <template>
+                  <a class="content-wrapper panel" href="[[baseSite]]/dash/">
+                      ${dashIcon}
+                    <div class="app-title">Dashboards</div>
+                  </a>
+                </template>
+              </dom-if>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/pmp/">
-                  ${pmpIcon}
-                <div class="app-title">Partnership Management</div>
-              </a>
+              <dom-if id="pmp">
+                <template>
+                  <a class="content-wrapper panel" href="[[baseSite]]/pmp/">
+                      ${pmpIcon}
+                    <div class="app-title">Partnership Management</div>
+                  </a>
+                </template>
+              </dom-if>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/t2f/">
-                  ${tripsIcon}
-                <div class="app-title">Trip Management</div>
-              </a>
+              <dom-if id="t2f">
+                <template>
+                  <a class="content-wrapper panel" href="[[baseSite]]/t2f/">
+                      ${tripsIcon}
+                    <div class="app-title">Trip Management</div>
+                  </a>
+                </template>
+              </dom-if>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/ap/">
-                  ${famIcon}
-                <div class="app-title">Financial Assurance</div>
-              </a>
+              <dom-if id="auditor">
+                <template>
+                  <a class="content-wrapper panel" href="[[baseSite]]/ap/">
+                      ${famIcon}
+                    <div class="app-title">Financial Assurance</div>
+                  </a>
+                </template>
+              </dom-if>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/tpm/">
-                  ${tpmIcon}
-                <div class="app-title">Third Party Monitoring</div>
-              </a>
+              <dom-if id="tpm">
+                <template>
+                  <a class="content-wrapper panel" href="[[baseSite]]/tpm/">
+                      ${tpmIcon}
+                    <div class="app-title">Third Party Monitoring</div>
+                  </a>
+                </template>
+              </dom-if>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/apd/">
-                  ${apdIcon}
-                <div class="app-title">Action Points</div>
-              </a>
+              <dom-if id="apd">
+                <template>
+                  <a class="content-wrapper panel" href="[[baseSite]]/apd/">
+                      ${apdIcon}
+                    <div class="app-title">Action Points</div>
+                  </a>
+                </template>
+              </dom-if>
             </div>
             
             <div class="content-wrapper-2">
@@ -261,6 +285,10 @@ class EtoolsAppSelector extends PolymerElement {
       opened: {
         type: String,
         value: ''
+      },
+      user: {
+        type: Object,
+        observer: 'setShit'
       }
     };
   }
@@ -277,6 +305,26 @@ class EtoolsAppSelector extends PolymerElement {
     document.addEventListener('click', this._onCaptureClick.bind(this), true);
   }
 
+  setShit() {
+    // check if User object is populated
+    if (Object.keys(this.user).length === 0 && this.user.constructor === Object) { return; }
+
+    // if user is in UNICEF User group, display all modules
+    if (this.user.groups.some(group => group.name === "UNICEF User")) {
+      let conditional = this.shadowRoot.querySelectorAll('dom-if');
+      conditional.forEach(thing => thing.if = true);
+    }
+
+    if (this.user.groups.some(group => group.name === 'Auditor')) {
+      let auditor = this.shadowRoot.querySelector('dom-if#auditor');
+      auditor.if = true;
+    }
+
+    if (this.user.groups.some(group => group.name === 'Third Party Monitor')) {
+      let tpm = this.shadowRoot.querySelector('dom-if#tpm');
+      tpm.if = true;
+    }
+  }
   /**
    * Toggles the menu opened and closed
    *
