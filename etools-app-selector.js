@@ -309,7 +309,7 @@ class EtoolsAppSelector extends PolymerElement {
     if (Object.keys(this.user).length === 0 && this.user.constructor === Object) { return; }
 
     // if user is in UNICEF User group, display all modules
-    if (this.user.groups.some(group => group.name === "UNICEF User")) {
+    if (this.user.groups.some(group => group.name === 'UNICEF User')) {
       let conditional = this.shadowRoot.querySelectorAll('dom-if');
       conditional.forEach(thing => thing.if = true);
     }
@@ -355,9 +355,9 @@ class EtoolsAppSelector extends PolymerElement {
    *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
    *
    */
-  //TODO - method doesn't seem to be needed anymore, remove when 100% confirmed
+  // TODO - method doesn't seem to be needed anymore, remove when 100% confirmed
   goToPage(e) {
-    if(e && e.model && e.model.app && e.model.app.url){
+    if(e && e.model && e.model.app && e.model.app.url) {
       let path = window.location.origin + '/' + e.model.app.url + '/';
       this.manageClickEvent(e, path);
     }
