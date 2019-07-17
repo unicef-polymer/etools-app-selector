@@ -189,7 +189,7 @@ App selector menu
           </div>
           <div class="app-outer">
             <div class="app-inner">
-              <template is="dom-repeat" items="[[menuOptions]]" as="app">
+              <template is="dom-repeat" id="moduleList" filter="_checkPermission" items="[[menuOptions]]" as="app">
                 <div class="panel-row">
                   <div class="content-wrapper panel">
                     <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
@@ -259,35 +259,45 @@ App selector menu
             {
               title: 'Dashboards',
               icon: 'app-selector-icons:dashIcon',
+              permission: ['UNICEF User'],
               url: 'dash'
             },
             {
               title: 'Partnership Management',
               icon: 'app-selector-icons:pmpIcon',
+              permission: ['UNICEF User'],
               url: 'pmp'
             },
             {
               title: 'Trip Management',
               icon: 'app-selector-icons:tripsIcon',
+              permission: ['UNICEF User'],
               url: 't2f'
             },
             {
               title: 'Financial Assurance',
               icon: 'app-selector-icons:famIcon',
+              permission: ['UNICEF User', 'Auditor'],
               url: 'ap'
             },
             {
               title: 'Third Party Monitoring',
               icon: 'app-selector-icons:tpmIcon',
+              permission: ['UNICEF User', 'Third Party Monitor'],
               url: 'tpm'
             },
             {
               title: 'Action Points',
               icon: 'app-selector-icons:apdIcon',
+              permission: ['UNICEF User'],
               url: 'apd'
             },
           ],
           notify: true,
+        },
+          user: {
+            type: Object,
+            observer: '_renderIcons'
         }
       },
 
@@ -360,6 +370,15 @@ App selector menu
         }
         return false;
       },
+
+      _renderIcons: function() {
+        this.$.moduleList.render();
+      },
+
+      _checkPermission: function(mod) {
+        if (!this.user) { return false; }
+        return this.user.groups.some(group => mod.permission.includes(group.name));
+      }
     });
   </script>
 </dom-module>
