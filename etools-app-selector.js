@@ -1,6 +1,5 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-styles/color.js';
 import '@polymer/iron-icons/iron-icons.js';
