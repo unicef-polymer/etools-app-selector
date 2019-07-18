@@ -281,7 +281,7 @@ class EtoolsAppSelector extends PolymerElement {
         value: {
           dash: ['UNICEF User'],
           pmp: ['UNICEF User'],
-          t2f: ['UNICEF User'], 
+          t2f: ['UNICEF User'],
           tpm: ['UNICEF User', 'Third Party Monitor'],
           fam: ['UNICEF User', 'Auditor'],
           apd: ['UNICEF User']
