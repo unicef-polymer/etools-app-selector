@@ -1,5 +1,6 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/polymer/lib/elements/dom-if.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-styles/color.js';
 import '@polymer/iron-icons/iron-icons.js';
@@ -192,59 +193,47 @@ class EtoolsAppSelector extends PolymerElement {
             </div>
             
             <div class="etools-apps">
-              <dom-if id="dash">
-                <template>
+                <template is="dom-if" if="[[_hasPermission('dash', user)]]">
                   <a class="content-wrapper panel" href="[[baseSite]]/dash/">
                       ${dashIcon}
                     <div class="app-title">Dashboards</div>
                   </a>
                 </template>
-              </dom-if>
           
-              <dom-if id="pmp">
-                <template>
+                <template is="dom-if" if="[[_hasPermission('pmp', user)]]">
                   <a class="content-wrapper panel" href="[[baseSite]]/pmp/">
                       ${pmpIcon}
                     <div class="app-title">Partnership Management</div>
                   </a>
                 </template>
-              </dom-if>
           
-              <dom-if id="t2f">
-                <template>
+                <template is="dom-if" if="[[_hasPermission('t2f', user)]]">
                   <a class="content-wrapper panel" href="[[baseSite]]/t2f/">
                       ${tripsIcon}
                     <div class="app-title">Trip Management</div>
                   </a>
                 </template>
-              </dom-if>
           
-              <dom-if id="auditor">
-                <template>
+                <template is="dom-if" if="[[_hasPermission('fam', user)]]">
                   <a class="content-wrapper panel" href="[[baseSite]]/ap/">
                       ${famIcon}
                     <div class="app-title">Financial Assurance</div>
                   </a>
                 </template>
-              </dom-if>
           
-              <dom-if id="tpm">
-                <template>
+                <template is="dom-if" if="[[_hasPermission('tpm', user)]]">
                   <a class="content-wrapper panel" href="[[baseSite]]/tpm/">
                       ${tpmIcon}
                     <div class="app-title">Third Party Monitoring</div>
                   </a>
                 </template>
-              </dom-if>
           
-              <dom-if id="apd">
-                <template>
+                <template is="dom-if" if="[[_hasPermission('apd', user)]]">
                   <a class="content-wrapper panel" href="[[baseSite]]/apd/">
                       ${apdIcon}
                     <div class="app-title">Action Points</div>
                   </a>
                 </template>
-              </dom-if>
             </div>
             
             <div class="content-wrapper-2">
@@ -287,7 +276,18 @@ class EtoolsAppSelector extends PolymerElement {
       },
       user: {
         type: Object,
-        observer: 'showIcons'
+        notify: true
+      },
+      appPermissionsByGroup: {
+        type: Object,
+        value: {
+          dash: ['UNICEF User'],
+          pmp: ['UNICEF User'],
+          t2f: ['UNICEF User'], 
+          tpm: ['UNICEF User', 'Third Party Monitor'],
+          fam: ['UNICEF User', 'Auditor'],
+          apd: ['UNICEF User']
+        }
       }
     };
   }
@@ -304,26 +304,6 @@ class EtoolsAppSelector extends PolymerElement {
     document.addEventListener('click', this._onCaptureClick.bind(this), true);
   }
 
-  showIcons() {
-    // check if User object is populated
-    if (Object.keys(this.user).length === 0 && this.user.constructor === Object) { return; }
-
-    // if user is in UNICEF User group, display all modules
-    if (this.user.groups.some(group => group.name === 'UNICEF User')) {
-      let conditional = this.shadowRoot.querySelectorAll('dom-if');
-      conditional.forEach(thing => thing.if = true);
-    }
-
-    if (this.user.groups.some(group => group.name === 'Auditor')) {
-      let auditor = this.shadowRoot.querySelector('dom-if#auditor');
-      auditor.if = true;
-    }
-
-    if (this.user.groups.some(group => group.name === 'Third Party Monitor')) {
-      let tpm = this.shadowRoot.querySelector('dom-if#tpm');
-      tpm.if = true;
-    }
-  }
   /**
    * Toggles the menu opened and closed
    *
@@ -383,6 +363,13 @@ class EtoolsAppSelector extends PolymerElement {
       }
     }
     return false;
+  }
+
+  _hasPermission(appName, user) {
+    // checks if user object is populated
+    if (Object.entries(user).length === 0 && user.constructor === Object) {return;}
+    let allowedGroups = this.appPermissionsByGroup[appName];
+    return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
   }
 }
 
