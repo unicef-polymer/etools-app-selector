@@ -1,6 +1,5 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-
-import '@polymer/polymer/lib/elements/dom-repeat.js';
+import '@polymer/polymer/lib/elements/dom-if.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-styles/color.js';
 import '@polymer/iron-icons/iron-icons.js';
@@ -193,35 +192,47 @@ class EtoolsAppSelector extends PolymerElement {
             </div>
             
             <div class="etools-apps">
-              <a class="content-wrapper panel" href="[[baseSite]]/dash/">
-                  ${dashIcon}
-                <div class="app-title">Dashboards</div>
-              </a>
+                <template is="dom-if" if="[[_hasPermission('dash', user)]]">
+                  <a class="content-wrapper panel" href="[[baseSite]]/dash/">
+                      ${dashIcon}
+                    <div class="app-title">Dashboards</div>
+                  </a>
+                </template>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/pmp/">
-                  ${pmpIcon}
-                <div class="app-title">Partnership Management</div>
-              </a>
+                <template is="dom-if" if="[[_hasPermission('pmp', user)]]">
+                  <a class="content-wrapper panel" href="[[baseSite]]/pmp/">
+                      ${pmpIcon}
+                    <div class="app-title">Partnership Management</div>
+                  </a>
+                </template>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/t2f/">
-                  ${tripsIcon}
-                <div class="app-title">Trip Management</div>
-              </a>
+                <template is="dom-if" if="[[_hasPermission('t2f', user)]]">
+                  <a class="content-wrapper panel" href="[[baseSite]]/t2f/">
+                      ${tripsIcon}
+                    <div class="app-title">Trip Management</div>
+                  </a>
+                </template>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/ap/">
-                  ${famIcon}
-                <div class="app-title">Financial Assurance</div>
-              </a>
+                <template is="dom-if" if="[[_hasPermission('fam', user)]]">
+                  <a class="content-wrapper panel" href="[[baseSite]]/ap/">
+                      ${famIcon}
+                    <div class="app-title">Financial Assurance</div>
+                  </a>
+                </template>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/tpm/">
-                  ${tpmIcon}
-                <div class="app-title">Third Party Monitoring</div>
-              </a>
+                <template is="dom-if" if="[[_hasPermission('tpm', user)]]">
+                  <a class="content-wrapper panel" href="[[baseSite]]/tpm/">
+                      ${tpmIcon}
+                    <div class="app-title">Third Party Monitoring</div>
+                  </a>
+                </template>
           
-              <a class="content-wrapper panel" href="[[baseSite]]/apd/">
-                  ${apdIcon}
-                <div class="app-title">Action Points</div>
-              </a>
+                <template is="dom-if" if="[[_hasPermission('apd', user)]]">
+                  <a class="content-wrapper panel" href="[[baseSite]]/apd/">
+                      ${apdIcon}
+                    <div class="app-title">Action Points</div>
+                  </a>
+                </template>
             </div>
             
             <div class="content-wrapper-2">
@@ -261,6 +272,20 @@ class EtoolsAppSelector extends PolymerElement {
       opened: {
         type: String,
         value: ''
+      },
+      user: {
+        type: Object
+      },
+      appPermissionsByGroup: {
+        type: Object,
+        value: {
+          dash: ['UNICEF User'],
+          pmp: ['UNICEF User'],
+          t2f: ['UNICEF User'], 
+          tpm: ['UNICEF User', 'Third Party Monitor'],
+          fam: ['UNICEF User', 'Auditor'],
+          apd: ['UNICEF User']
+        }
       }
     };
   }
@@ -308,9 +333,9 @@ class EtoolsAppSelector extends PolymerElement {
    *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
    *
    */
-  //TODO - method doesn't seem to be needed anymore, remove when 100% confirmed
+  // TODO - method doesn't seem to be needed anymore, remove when 100% confirmed
   goToPage(e) {
-    if(e && e.model && e.model.app && e.model.app.url){
+    if(e && e.model && e.model.app && e.model.app.url) {
       let path = window.location.origin + '/' + e.model.app.url + '/';
       this.manageClickEvent(e, path);
     }
@@ -336,6 +361,13 @@ class EtoolsAppSelector extends PolymerElement {
       }
     }
     return false;
+  }
+
+  _hasPermission(appName, user) {
+    // checks if user object is populated
+    if (Object.entries(user).length === 0 && user.constructor === Object) {return false;}
+    let allowedGroups = this.appPermissionsByGroup[appName];
+    return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
   }
 }
 
