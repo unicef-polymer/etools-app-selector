@@ -16,7 +16,7 @@
     "lint:javascript": "eslint . --ext js,html && exit 0",
     "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'"
   },
-  "version": "3.0.0",
+  "version": "3.0.0-rc.2",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
