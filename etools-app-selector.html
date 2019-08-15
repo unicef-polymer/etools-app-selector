@@ -15,162 +15,162 @@ App selector menu
 -->
 
 <dom-module id="etools-app-selector">
-  <style>
-    :host {
-          --paper-icon-button: {
-            box-sizing: content-box !important;
-          };
-        }
-
-        paper-icon-button.apps-button {
-          @apply --layout-horizontal;
-          width: 24px;
-          height: 24px;
-          padding: 18px 24px 18px 24px;
-          color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
-          border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
-          z-index: 100;
-          box-sizing: content-box !important;
-        }
-
-        paper-icon-button.icon-opened {
-          background: #ffffff;
-          color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
-        }
-
-        .container {
-          @apply --layout-vertical;
-          position: relative;
-        }
-
-        .apps-select {
-          position: absolute;
-          background: var(--primary-element-background, #FFFFFF);
-          top: 60px;
-          z-index: 100;
-          padding: 0;
-        }
-
-        .content-wrapper {
-          @apply --layout-center;
-          min-height: 60px;
-          padding: 24px 4px;
-          box-sizing: border-box;
-          font-size: 14px;
-          text-align: center;
-          white-space: nowrap;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-          border-right: 1px solid rgba(0, 0, 0, 0.12);
-        }
-
-        .content-wrapper-2 {
-          @apply --layout-center;
-          display: flex;
-          height: 37px;
-          box-sizing: border-box;
-          font-size: 12px;
-          white-space: nowrap;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-          border-right: 1px solid rgba(0, 0, 0, 0.12);
-        }
-
-        paper-icon-button.panel-icon {
-          width: 72px;
-          height: 72px;
-          padding: 0;
-        }
-
-        iron-icon.unpp-icon {
-          height: 32px;
-          width: 104px;
-        }
-
-        .panel {
-          width: 120px;
-        }
-
-        .panel:hover {
-          background: var(--app-selector-item-hover-color, #eeeeee);
-        }
-
-        .panel-row {
-          @apply --layout-horizontal;
-        }
-
-        .app-title {
-          font-size: 12px;
-          text-transform: uppercase;
-          font-weight: 500;
-          padding-top: 6px;
-          text-align: center;
-          line-height: 1.2;
-          cursor: pointer;
-          white-space: normal;
-        }
-
-        .app-outer {
-          width: 360px;
-          display: block;
-        }
-
-        iron-icon.bottom-icon {
-          --iron-icon-height: 20px;
-          --iron-icon-width: 20px;
-          --iron-icon-fill-color: #9e9e9e;
-          padding-right: 4px;
-        }
-
-        .weight-500 {
-          font-weight: 500;
-          padding-right: 4px;
-        }
-
-        .display-flex {
-          display: flex;
-          align-items: center;
-        }
-
-        .app-inner {
-          display: flex;
-          flex-flow: wrap;
-        }
-
-        .unpp-section {
-          background-color: rgb(76, 121, 179);
-          display: flex;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          padding-left: 8px;
-        }
-
-        .logo {
-          width: 104px;
-          height: 32px;
-          margin-right: 8px;
-          margin-left: 8px;
-        }
-
-        .top-content {
-          display: flex;
-          height: 56px;
-          flex-direction: row;
-          align-items: center;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-        }
-        
-        .admin {
-          width: 240px;
-          padding-left: 12px
-        }
-
-        a, a:link, a:visited, a:hover, a:active {
-          color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
-          text-decoration: none;
-        }
-
-  </style>
   <template>
+    <style>
+      :host {
+        --paper-icon-button: {
+          box-sizing: content-box !important;
+        };
+      }
+
+      paper-icon-button.apps-button {
+        @apply --layout-horizontal;
+        width: 24px;
+        height: 24px;
+        padding: 18px 24px 18px 24px;
+        color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+        border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
+        z-index: 100;
+        box-sizing: content-box !important;
+      }
+
+      paper-icon-button.icon-opened {
+        background: #ffffff;
+        color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+      }
+
+      .container {
+        @apply --layout-vertical;
+        position: relative;
+      }
+
+      .apps-select {
+        position: absolute;
+        background: var(--primary-element-background, #FFFFFF);
+        top: 60px;
+        z-index: 100;
+        padding: 0;
+      }
+
+      .content-wrapper {
+        @apply --layout-center;
+        min-height: 60px;
+        padding: 24px 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+      }
+
+      .content-wrapper-2 {
+        @apply --layout-center;
+        display: flex;
+        height: 37px;
+        box-sizing: border-box;
+        font-size: 12px;
+        white-space: nowrap;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+      }
+
+      paper-icon-button.panel-icon {
+        width: 72px;
+        height: 72px;
+        padding: 0;
+      }
+
+      iron-icon.unpp-icon {
+        height: 32px;
+        width: 104px;
+      }
+
+      .panel {
+        width: 120px;
+      }
+
+      .panel:hover {
+        background: var(--app-selector-item-hover-color, #eeeeee);
+      }
+
+      .panel-row {
+        @apply --layout-horizontal;
+      }
+
+      .app-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding-top: 6px;
+        text-align: center;
+        line-height: 1.2;
+        cursor: pointer;
+        white-space: normal;
+      }
+
+      .app-outer {
+        width: 360px;
+        display: block;
+      }
+
+      iron-icon.bottom-icon {
+        --iron-icon-height: 20px;
+        --iron-icon-width: 20px;
+        --iron-icon-fill-color: #9e9e9e;
+        padding-right: 4px;
+      }
+
+      .weight-500 {
+        font-weight: 500;
+        padding-right: 4px;
+      }
+
+      .display-flex {
+        display: flex;
+        align-items: center;
+      }
+
+      .app-inner {
+        display: flex;
+        flex-flow: wrap;
+      }
+
+      .unpp-section {
+        background-color: rgb(76, 121, 179);
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding-left: 8px;
+      }
+
+      .logo {
+        width: 104px;
+        height: 32px;
+        margin-right: 8px;
+        margin-left: 8px;
+      }
+
+      .top-content {
+        display: flex;
+        height: 56px;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+      
+      .admin {
+        width: 240px;
+        padding-left: 12px
+      }
+
+      a, a:link, a:visited, a:hover, a:active {
+        color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
+        text-decoration: none;
+      }
+    </style>
+  
     <div class="container" id="etools-selector">
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
       <iron-collapse id="selector" class="apps-select">
@@ -204,18 +204,20 @@ App selector menu
               </template>
             </div>
           </div>
-          <div class="content-wrapper-2">
-            <a class="display-flex admin" on-tap="goToAdmin" href="[[baseSite]]/admin/">
-              <iron-icon class="bottom-icon" 
-                         icon="admin-icon:adminIcon">
-              </iron-icon>
-              <span class="weight-500">ADMIN</span>(Permission Required)
-            </a>
-            <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
-            <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-              <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank"><span class="weight-500">DATAMART</span></a>
-            </a> -->
-          </div>
+          <template is="dom-if" if="[[isAdmin]]">
+            <div class="content-wrapper-2">
+              <a class="display-flex admin" on-tap="goToAdmin" href="[[baseSite]]/admin/">
+                <iron-icon class="bottom-icon" 
+                          icon="admin-icon:adminIcon">
+                </iron-icon>
+                <span class="weight-500">ADMIN</span>(Permission Required)
+              </a>
+              <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
+              <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
+                <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank"><span class="weight-500">DATAMART</span></a>
+              </a> -->
+            </div>
+          </template>
         </div>
       </iron-collapse>
     </div>
@@ -237,6 +239,11 @@ App selector menu
         opened: {
           type: String,
           value: '',
+        },
+
+        isAdmin: {
+          type: Boolean,
+          value: false
         },
 
         /**
@@ -372,6 +379,13 @@ App selector menu
       },
 
       _renderIcons: function() {
+        let admin = false;
+        if (this.user.is_superuser === 'True') {
+          admin = true;
+        } else if (this.user.groups.find(group => group.id === '87')) {
+          admin = true;
+        }
+        this.set('isAdmin', admin)
         this.$.moduleList.render();
       },
 
