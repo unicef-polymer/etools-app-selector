@@ -209,18 +209,20 @@ App selector menu
               </template>
             </div>
           </div>
-          <div class="content-wrapper-2">
-            <a class="display-flex admin" on-tap="goToAdmin" href="/admin/">
-              <iron-icon class="bottom-icon"
-                         icon="admin-icon:adminIcon">
-              </iron-icon>
-              <span class="weight-500">ADMIN</span>(Permission Required)
-            </a>
-            <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
-            <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-              <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank"><span class="weight-500">DATAMART</span></a>
-            </a> -->
-          </div>
+          <template is="dom-if" if="[[isAdmin]]">
+            <div class="content-wrapper-2">
+              <a class="display-flex admin" on-tap="goToAdmin" href="/admin/">
+                <iron-icon class="bottom-icon"
+                          icon="admin-icon:adminIcon">
+                </iron-icon>
+                <span class="weight-500">ADMIN</span>(Permission Required)
+              </a>
+              <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
+              <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
+                <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank"><span class="weight-500">DATAMART</span></a>
+              </a> -->
+            </div>
+          </template>
         </div>
       </iron-collapse>
     </div>
@@ -253,6 +255,11 @@ App selector menu
           opened: {
             type: String,
             value: ''
+          },
+
+          isAdmin: {
+            type: Boolean,
+            value: false
           },
 
           /**
@@ -391,6 +398,13 @@ App selector menu
       }
 
       _renderIcons() {
+        let admin = false;
+        if (this.user.is_superuser === 'True') {
+          admin = true;
+        } else if (this.user.groups.find(group => group.id === '87')) {
+          admin = true;
+        }
+        this.set('isAdmin', admin)
         this.$.moduleList.render();
       }
 
