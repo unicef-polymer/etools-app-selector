@@ -130,7 +130,7 @@ class EtoolsAppSelector extends PolymerElement {
             display: flex;
             align-items: center;
           }
-          
+
           .etools-apps {
             width: 360px;
             display: flex;
@@ -164,11 +164,11 @@ class EtoolsAppSelector extends PolymerElement {
             width: 240px;
             padding-left: 12px
           }
-          
+
           svg #adminIcon path.option {
             fill: var(--light-theme-secondary-color, #cccccc);
           }
-          
+
           a, a:link, a:visited, a:hover, a:active {
             color: var(--app-selector-text-color, rgba(0, 0, 0, 0.87));
             text-decoration: none;
@@ -190,53 +190,53 @@ class EtoolsAppSelector extends PolymerElement {
                 <span class="logo">${unppLogo}</span>
               </a>
             </div>
-            
+
             <div class="etools-apps">
                 <template is="dom-if" if="[[_hasPermission('dash', user)]]">
-                  <a class="content-wrapper panel" href="[[baseSite]]/dash/">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/dash/">
                       ${dashIcon}
                     <div class="app-title">Dashboards</div>
                   </a>
                 </template>
-          
+
                 <template is="dom-if" if="[[_hasPermission('pmp', user)]]">
-                  <a class="content-wrapper panel" href="[[baseSite]]/pmp/">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/pmp/">
                       ${pmpIcon}
                     <div class="app-title">Partnership Management</div>
                   </a>
                 </template>
-          
+
                 <template is="dom-if" if="[[_hasPermission('t2f', user)]]">
-                  <a class="content-wrapper panel" href="[[baseSite]]/t2f/">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/t2f/">
                       ${tripsIcon}
                     <div class="app-title">Trip Management</div>
                   </a>
                 </template>
-          
+
                 <template is="dom-if" if="[[_hasPermission('fam', user)]]">
-                  <a class="content-wrapper panel" href="[[baseSite]]/ap/">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/ap/">
                       ${famIcon}
                     <div class="app-title">Financial Assurance</div>
                   </a>
                 </template>
-          
+
                 <template is="dom-if" if="[[_hasPermission('tpm', user)]]">
-                  <a class="content-wrapper panel" href="[[baseSite]]/tpm/">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/tpm/">
                       ${tpmIcon}
                     <div class="app-title">Third Party Monitoring</div>
                   </a>
                 </template>
-          
+
                 <template is="dom-if" if="[[_hasPermission('apd', user)]]">
-                  <a class="content-wrapper panel" href="[[baseSite]]/apd/">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/apd/">
                       ${apdIcon}
                     <div class="app-title">Action Points</div>
                   </a>
                 </template>
             </div>
-            
+
             <div class="content-wrapper-2">
-              <a class="display-flex admin" href="[[baseSite]]/admin/">
+              <a class="display-flex admin" on-tap="goToPage" href$="[[baseSite]]/admin/">
                   ${adminIcon}
                 <span class="weight-500">ADMIN</span>(Permission Required)
               </a>
@@ -333,12 +333,10 @@ class EtoolsAppSelector extends PolymerElement {
    *  `app.url="admin" will change location to 'http://myBaseUrlAndPort/admin/' `
    *
    */
-  // TODO - method doesn't seem to be needed anymore, remove when 100% confirmed
+
   goToPage(e) {
-    if(e && e.model && e.model.app && e.model.app.url) {
-      let path = window.location.origin + '/' + e.model.app.url + '/';
-      this.manageClickEvent(e, path);
-    }
+    let path = e.target.closest("a").getAttribute('href');
+    this.manageClickEvent(e, path);
   }
 
   /**
