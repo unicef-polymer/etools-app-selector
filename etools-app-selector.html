@@ -379,14 +379,13 @@ App selector menu
       },
 
       _renderIcons: function() {
-        let admin = false;
-        if (this.user.is_superuser === 'True') {
-          admin = true;
-        } else if (this.user.groups.find(group => group.id === '87')) {
-          admin = true;
-        }
-        this.set('isAdmin', admin)
+        if (!this.user) { return false; }
+        this.set('isAdmin', this.isAdminUser(this.user))
         this.$.moduleList.render();
+      },
+
+      isAdminUser(user) {
+        return user.is_superuser === 'True' || this.user.groups.find(group => group.name === 'Country Office Administrator');
       },
 
       _checkPermission: function(mod) {
