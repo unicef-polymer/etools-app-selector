@@ -379,13 +379,10 @@ class EtoolsAppSelector extends PolymerElement {
   }
 
   checkIsAdmin() {
-    let admin = false;
-    if (this.user.is_superuser === 'True') {
-      admin = true;
-    } else if (this.user.groups.find(group => group.id === '87')) {
-      admin = true;
-    }
-    this.set('isAdmin', admin)
+    if (!this.user) { return false; }
+    let isAdmin = this.user.is_superuser === 'True' ||
+      this.user.groups.find(group => group.name === 'Country Office Administrator');
+    this.set('isAdmin', isAdmin);
   }
 }
 
