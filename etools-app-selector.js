@@ -377,7 +377,7 @@ class EtoolsAppSelector extends PolymerElement {
   }
 
   checkIsAdmin() {
-    if (!this.user) { return false; }
+    if (!this.user || (Object.entries(this.user).length === 0 && this.user.constructor === Object)) { return false; }
     let isAdmin = this.user.is_superuser === 'True' ||
       this.user.groups.find(group => group.name === 'Country Office Administrator');
     this.set('isAdmin', isAdmin);
