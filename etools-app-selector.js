@@ -235,18 +235,20 @@ class EtoolsAppSelector extends PolymerElement {
                 </template>
             </div>
 
-            <div class="content-wrapper-2">
-              <a class="display-flex admin" on-tap="goToPage" href$="[[baseSite]]/admin/">
-                  ${adminIcon}
-                <span class="weight-500">ADMIN</span>(Permission Required)
-              </a>
-              <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
-              <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-                <a href="https://datamart.unicef.io" target="_blank">
-                  <span class="weight-500">DATAMART</span>
+            <template is="dom-if" if="[[isAdmin]]">
+              <div class="content-wrapper-2">
+                <a class="display-flex admin" href="[[baseSite]]/admin/">
+                    ${adminIcon}
+                  <span class="weight-500">ADMIN</span>(Permission Required)
                 </a>
-              </a> -->
-            </div>
+                <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
+                <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
+                  <a href="https://datamart.unicef.io" target="_blank">
+                    <span class="weight-500">DATAMART</span>
+                  </a>
+                </a> -->
+              </div>
+            </template>
           </div>
         </iron-collapse>
       </div>
@@ -265,6 +267,11 @@ class EtoolsAppSelector extends PolymerElement {
         value: window.location.origin
       },
 
+      isAdmin: {
+        type: Boolean,
+        value: false
+      },
+
       /**
        * Class name toggle variable.
        * Used for styling when dropdown open/closed
@@ -274,7 +281,8 @@ class EtoolsAppSelector extends PolymerElement {
         value: ''
       },
       user: {
-        type: Object
+        type: Object,
+        observer: 'checkIsAdmin'
       },
       appPermissionsByGroup: {
         type: Object,
@@ -366,6 +374,13 @@ class EtoolsAppSelector extends PolymerElement {
     if (Object.entries(user).length === 0 && user.constructor === Object) {return false;}
     let allowedGroups = this.appPermissionsByGroup[appName];
     return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
+  }
+
+  checkIsAdmin() {
+    if (!this.user) { return false; }
+    let isAdmin = this.user.is_superuser === 'True' ||
+      this.user.groups.find(group => group.name === 'Country Office Administrator');
+    this.set('isAdmin', isAdmin);
   }
 }
 
