@@ -237,7 +237,7 @@ class EtoolsAppSelector extends PolymerElement {
 
             <template is="dom-if" if="[[isAdmin]]">
               <div class="content-wrapper-2">
-                <a class="display-flex admin" href="[[baseSite]]/admin/">
+                <a class="display-flex admin" on-tap="goToPage" href$="[[baseSite]]/admin/">
                     ${adminIcon}
                   <span class="weight-500">ADMIN</span>(Permission Required)
                 </a>
@@ -307,7 +307,13 @@ class EtoolsAppSelector extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', this._onCaptureClick.bind(this), true);
+    this._onCaptureClick = this._onCaptureClick.bind(this);
+    document.addEventListener('click', this._onCaptureClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('click', this._onCaptureClick);
   }
 
   /**
