@@ -276,13 +276,13 @@ class EtoolsAppSelector extends PolymerElement {
                 <template is="dom-if" if="[[isAdmin]]">
                   <div id="adminGroup">
                     <div class="module-group-title">Admin</div>
-                      <a class="display-flex admin" href="[[baseSite]]/admin/">
+                      <a class="display-flex admin" on-tap="goToPage" href="[[baseSite]]/admin/">
                           ${adminIcon}
                         <span class="weight-500">ADMIN</span>
                       </a>
                       <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
                       <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-                        <a href="https://datamart.unicef.io" target="_blank">
+                        <a href="https://datamart.unicef.io" on-tap="goToPage" target="_blank">
                           <span class="weight-500">DATAMART</span>
                         </a>
                       </a> -->
@@ -290,7 +290,6 @@ class EtoolsAppSelector extends PolymerElement {
                 </template>
               </div>
             </div>
-
           </div>
         </iron-collapse>
       </div>
@@ -351,7 +350,13 @@ class EtoolsAppSelector extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', this._onCaptureClick.bind(this), true);
+    this._onCaptureClick = this._onCaptureClick.bind(this);
+    document.addEventListener('click', this._onCaptureClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('click', this._onCaptureClick);
   }
 
   /**
