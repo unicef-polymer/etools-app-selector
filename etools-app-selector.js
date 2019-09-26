@@ -7,8 +7,7 @@ import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-styles/element-styles/paper-material-styles.js';
 import {dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon,
-        apdIcon, adminIcon, etoolsLogo, unppLogo} from './app-selector-icons.js';
-
+        apdIcon, adminIcon, etoolsLogo, unppLogo, pseaIcon, powerBiIcon} from './app-selector-icons.js';
 
 /**
  * `etools-app-selector`
@@ -62,12 +61,10 @@ class EtoolsAppSelector extends PolymerElement {
           }
 
           .content-wrapper {
-            @apply --layout-center;
-            min-height: 60px;
-            padding: 24px 4px;
+            @apply --layout-horizontal;
+            padding: 4px 4px;
             box-sizing: border-box;
             font-size: 14px;
-            text-align: center;
             white-space: nowrap;
             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
             border-right: 1px solid rgba(0, 0, 0, 0.12);
@@ -84,11 +81,11 @@ class EtoolsAppSelector extends PolymerElement {
             border-right: 1px solid rgba(0, 0, 0, 0.12);
           }
 
-          paper-icon-button.panel-icon {
-            width: 72px;
-            height: 72px;
+          */ paper-icon-button.panel-icon {
+            width: 36px;
+            height: 36px;
             padding: 0;
-          }
+          } /*
 
           iron-icon.unpp-icon {
             height: 32px;
@@ -96,7 +93,7 @@ class EtoolsAppSelector extends PolymerElement {
           }
 
           .panel {
-            width: 120px;
+            width: 100%;
           }
 
           .panel:hover {
@@ -104,14 +101,17 @@ class EtoolsAppSelector extends PolymerElement {
           }
 
           .app-title {
-            font-size: 12px;
+            font-size: 14px;
             text-transform: uppercase;
             font-weight: 500;
-            padding-top: 6px;
-            text-align: center;
+            padding-left: 6px;
             line-height: 1.2;
             cursor: pointer;
             white-space: normal;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 116px;
           }
 
           iron-icon.bottom-icon {
@@ -124,6 +124,7 @@ class EtoolsAppSelector extends PolymerElement {
           .weight-500 {
             font-weight: 500;
             padding-right: 4px;
+            font-size: 12px;
           }
 
           .display-flex {
@@ -132,17 +133,17 @@ class EtoolsAppSelector extends PolymerElement {
           }
 
           .etools-apps {
-            width: 360px;
+            width: 320px;
             display: flex;
             flex-flow: wrap;
           }
 
           .unpp-section {
-            background-color: rgb(76, 121, 179);
             display: flex;
             align-items: center;
-            width: 240px;
-            height: 100%;
+            width: 160px;
+            min-height: 42px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
           }
 
           .logo {
@@ -152,16 +153,15 @@ class EtoolsAppSelector extends PolymerElement {
             margin-left: 8px;
           }
 
-          .top-content {
+          */ .top-content {
             display: flex;
             height: 56px;
             flex-direction: row;
             align-items: center;
             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-          }
+          } /*
 
           .admin {
-            width: 240px;
             padding-left: 12px
           }
 
@@ -174,6 +174,18 @@ class EtoolsAppSelector extends PolymerElement {
             text-decoration: none;
           }
 
+          .module-group {
+            width: 160px;
+          }
+
+          .module-group-title {
+            text-transform: uppercase;
+            font-weight: 500;
+            padding-left: 6px;
+            background: var(--divider-color);
+            font-size: 12px;
+            color: black;
+          }
         </style>
       </custom-style>
 
@@ -181,74 +193,104 @@ class EtoolsAppSelector extends PolymerElement {
         <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
         <iron-collapse id="selector" class="apps-select">
           <div class="paper-material" elevation="5">
-            <div class="top-content">
+            <!-- <div class="top-content">
               <div class="panel">
                 <span class="logo">${etoolsLogo}</span>
               </div>
-              <a class="unpp-section"
-                 href="https://www.unpartnerportal.org/login" target="_blank">
-                <span class="logo">${unppLogo}</span>
-              </a>
-            </div>
+            </div> -->
 
             <div class="etools-apps">
-                <template is="dom-if" if="[[_hasPermission('dash', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/dash/">
+              <div class="module-group">
+                <div id="programmeManagementGroup">
+                <div class="module-group-title">Programme Management</div>
+                  <template is="dom-if" if="[[_hasPermission('dash', user)]]">
+                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/dash/">
                       ${dashIcon}
-                    <div class="app-title">Dashboards</div>
-                  </a>
-                </template>
+                      <div class="app-title">Dashboards</div>
+                    </a>
+                  </template>
 
-                <template is="dom-if" if="[[_hasPermission('pmp', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/pmp/">
+                  <template is="dom-if" if="[[_hasPermission('pmp', user)]]">
+                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/pmp/">
                       ${pmpIcon}
-                    <div class="app-title">Partnership Management</div>
-                  </a>
-                </template>
+                      <div class="app-title">Partnership Management</div>
+                    </a>
+                  </template>
 
-                <template is="dom-if" if="[[_hasPermission('t2f', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/t2f/">
-                      ${tripsIcon}
-                    <div class="app-title">Trip Management</div>
-                  </a>
-                </template>
-
-                <template is="dom-if" if="[[_hasPermission('fam', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/ap/">
-                      ${famIcon}
-                    <div class="app-title">Financial Assurance</div>
-                  </a>
-                </template>
-
-                <template is="dom-if" if="[[_hasPermission('tpm', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/tpm/">
-                      ${tpmIcon}
-                    <div class="app-title">Third Party Monitoring</div>
-                  </a>
-                </template>
-
-                <template is="dom-if" if="[[_hasPermission('apd', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/apd/">
+                  <template is="dom-if" if="[[_hasPermission('apd', user)]]">
+                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/apd/">
                       ${apdIcon}
-                    <div class="app-title">Action Points</div>
+                      <div class="app-title">Action Points</div>
+                    </a>
+                  </template>
+                </div>
+
+                <div id="assuranceGroup">
+                  <div class="module-group-title">Assurance</div>
+                  <template is="dom-if" if="[[_hasPermission('fam', user)]]">
+                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/ap/">
+                      ${famIcon}
+                      <div class="app-title">Financial Assurance</div>
+                    </a>
+                  </template>
+
+                  <template is="dom-if" if="[[_hasPermission('psea', user)]]">
+                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/psea/">
+                      ${pseaIcon}
+                      <div class="app-title">PSEA</div>
+                    </a>
+                  </template>
+                </div>
+              </div>
+                
+              <div class="module-group">
+                <div id="monitoringGroup">
+                  <div class="module-group-title">Monitoring</div>
+                  <template is="dom-if" if="[[_hasPermission('tpm', user)]]">
+                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/tpm/">
+                      ${tpmIcon}
+                      <div class="app-title">Third Party Monitoring</div>
+                    </a>
+                  </template>
+
+                  <template is="dom-if" if="[[_hasPermission('t2f', user)]]">
+                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/t2f/">
+                      ${tripsIcon}
+                      <div class="app-title">Trip Management</div>
+                    </a>
+                  </template>
+                </div>
+
+                <div id="externalToolsGroup">
+                  <div class="module-group-title">External Tools</div>
+                  <a class="unpp-section"
+                    href="https://www.unpartnerportal.org/login" target="_blank">
+                    <span class="logo">${unppLogo}</span>
                   </a>
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/t2f/">
+                    ${powerBiIcon}
+                    <div class="app-title">eToolsNOW</div>
+                  </a>
+                </div>
+
+                <template is="dom-if" if="[[isAdmin]]">
+                  <div id="adminGroup">
+                    <div class="module-group-title">Admin</div>
+                      <a class="display-flex admin" href="[[baseSite]]/admin/">
+                          ${adminIcon}
+                        <span class="weight-500">ADMIN</span>
+                      </a>
+                      <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
+                      <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
+                        <a href="https://datamart.unicef.io" target="_blank">
+                          <span class="weight-500">DATAMART</span>
+                        </a>
+                      </a> -->
+                  </div>
                 </template>
+              </div>
             </div>
 
-            <template is="dom-if" if="[[isAdmin]]">
-              <div class="content-wrapper-2">
-                <a class="display-flex admin" href="[[baseSite]]/admin/">
-                    ${adminIcon}
-                  <span class="weight-500">ADMIN</span>(Permission Required)
-                </a>
-                <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
-                <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-                  <a href="https://datamart.unicef.io" target="_blank">
-                    <span class="weight-500">DATAMART</span>
-                  </a>
-                </a> -->
-              </div>
-            </template>
           </div>
         </iron-collapse>
       </div>
@@ -282,7 +324,8 @@ class EtoolsAppSelector extends PolymerElement {
       },
       user: {
         type: Object,
-        observer: 'checkIsAdmin'
+        observer: 'checkIsAdmin',
+        value: {}
       },
       appPermissionsByGroup: {
         type: Object,
@@ -292,7 +335,8 @@ class EtoolsAppSelector extends PolymerElement {
           t2f: ['UNICEF User'],
           tpm: ['UNICEF User', 'Third Party Monitor'],
           fam: ['UNICEF User', 'Auditor'],
-          apd: ['UNICEF User']
+          apd: ['UNICEF User'],
+          psea: ['all']
         }
       }
     };
@@ -343,7 +387,7 @@ class EtoolsAppSelector extends PolymerElement {
    */
 
   goToPage(e) {
-    let path = e.target.closest("a").getAttribute('href');
+    let path = e.target.closest('a').getAttribute('href');
     this.manageClickEvent(e, path);
   }
 
@@ -373,6 +417,7 @@ class EtoolsAppSelector extends PolymerElement {
     // checks if user object is populated
     if (Object.entries(user).length === 0 && user.constructor === Object) {return false;}
     let allowedGroups = this.appPermissionsByGroup[appName];
+    if (allowedGroups.indexOf('all') > -1) { return true;}
     return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
   }
 

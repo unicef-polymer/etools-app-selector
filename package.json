@@ -5,7 +5,7 @@
   "homepage": "https://github.com/unicef-polymer/etools-app-selector",
   "repository": {
     "type": "git",
-    "url": "https://github.com/unicef-polymer/etools-app-selector.git"
+    "url": "git+https://github.com/unicef-polymer/etools-app-selector.git"
   },
   "license": "BSD-3-Clause",
   "devDependencies": {
@@ -36,5 +36,12 @@
     "@polymer/iron-collapse": "^3.0.0",
     "@polymer/paper-icon-button": "^3.0.0",
     "@polymer/paper-styles": "^3.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/unicef-polymer/etools-app-selector/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": ""
 }
