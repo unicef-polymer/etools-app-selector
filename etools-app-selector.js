@@ -375,7 +375,7 @@ class EtoolsAppSelector extends PolymerElement {
 
   _hasPermission(appName, user) {
     // checks if user object is populated
-    if (Object.entries(user).length === 0 && user.constructor === Object) {return false;}
+    if (!this.user || (Object.entries(user).length === 0 && user.constructor === Object)) {return false;}
     let allowedGroups = this.appPermissionsByGroup[appName];
     if (allowedGroups.indexOf('all') > -1) { return true;}
     return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
