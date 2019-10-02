@@ -23,6 +23,9 @@ App selector menu
         :host {
           --paper-icon-button: {
             box-sizing: content-box !important;
+            padding: 0;
+            height: 36px;
+            width: 36px;
           };
         }
 
@@ -56,116 +59,59 @@ App selector menu
         }
 
         .content-wrapper {
-          @apply --layout-center;
-          min-height: 60px;
-          padding: 24px 4px;
+          @apply --layout-horizontal;
+          padding: 5px;
           box-sizing: border-box;
           font-size: 14px;
-          text-align: center;
           white-space: nowrap;
           border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-          border-right: 1px solid rgba(0, 0, 0, 0.12);
-        }
-
-        .content-wrapper-2 {
-          @apply --layout-center;
-          display: flex;
-          height: 37px;
-          box-sizing: border-box;
-          font-size: 12px;
-          white-space: nowrap;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-          border-right: 1px solid rgba(0, 0, 0, 0.12);
-        }
-
-        paper-icon-button.panel-icon {
-          width: 72px;
-          height: 72px;
-          padding: 0;
-        }
-
-        iron-icon.unpp-icon {
-          height: 32px;
-          width: 104px;
+          border-left: 1px solid rgba(0, 0, 0, 0.12);
         }
 
         .panel {
-          width: 120px;
+          width: 179px;
+          height: 100%;
+          align-items: center;
         }
 
         .panel:hover {
           background: var(--app-selector-item-hover-color, #eeeeee);
         }
 
-        .panel-row {
-          @apply --layout-horizontal;
-        }
-
         .app-title {
-          font-size: 12px;
-          text-transform: uppercase;
+          font-size: 11px;
           font-weight: 500;
-          padding-top: 6px;
-          text-align: center;
+          padding-left: 6px;
+          padding-right: 6px;
           line-height: 1.2;
           cursor: pointer;
           white-space: normal;
-        }
-
-        .app-outer {
-          width: 360px;
-          display: block;
-        }
-
-        iron-icon.bottom-icon {
-          --iron-icon-height: 20px;
-          --iron-icon-width: 20px;
-          --iron-icon-fill-color: #9e9e9e;
-          padding-right: 4px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          max-width: 116px;
         }
 
         .weight-500 {
           font-weight: 500;
           padding-right: 4px;
+          font-size: 12px;
         }
 
-        .display-flex {
-          display: flex;
-          align-items: center;
+        .etools-apps {
+          width: 360px;
         }
 
-        .app-inner {
-          display: flex;
-          flex-flow: wrap;
-        }
-
-        .unpp-section {
-          background-color: rgb(76, 121, 179);
-          display: flex;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          padding-left: 8px;
-        }
-
-        .logo {
-          width: 104px;
-          height: 32px;
-          margin-right: 8px;
-          margin-left: 8px;
-        }
-
-        .top-content {
-          display: flex;
-          height: 56px;
-          flex-direction: row;
-          align-items: center;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        svg #adminIcon path.option,
+        svg #externalIcon path.option {
+          fill: var(--light-theme-secondary-color, #cccccc);
         }
 
         .admin {
-          width: 240px;
-          padding-left: 12px
+          background: #eeeeee;
+          display: flex;
+          align-items: center;
+          padding-left: 4px;
         }
 
         a, a:link, a:visited, a:hover, a:active {
@@ -173,6 +119,42 @@ App selector menu
           text-decoration: none;
         }
 
+        .module-group {
+          border-right: 1px solid rgba(0, 0, 0, 0.12);
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+        .module-group-title {
+          text-transform: capitalize;
+          font-weight: 450;
+          padding: 6px;
+          background: #eeeeee;
+          font-size: 12px;
+          border-right: 1px solid var(--divider-color);
+          border-left: 1px solid var(--divider-color);
+          display: flex;
+          color: #444444;
+        }
+
+        .external {
+          height: 18px;
+          width: 18px;
+        }
+
+        .admin-icon {
+          height: 24px;
+          width: 24px;
+        }
+
+        .datamart > iron-icon,
+        a.power-bi > paper-icon-button {
+          --iron-icon-height: 36px;
+          --iron-icon-width: 36px;
+          --iron-icon-fill-color: var(--dark-theme-background-color, #cccccc);
+          color: var(--dark-theme-background-color, #cccccc);
+        }
       </style>
     </custom-style>
     
@@ -180,48 +162,122 @@ App selector menu
       <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
       <iron-collapse id="selector" class="apps-select">
         <div class="paper-material" elevation="5">
-          <div class="top-content">
-            <div class="panel">
-              <iron-icon class="logo"
-                         icon="etools-logo:logo"></iron-icon>
-            </div>
-            <a class="unpp-section"
-               href="https://www.unpartnerportal.org/login" target="_blank">
-              <iron-icon class="logo"
-                         icon="unppIcon:unpp">
-              </iron-icon>
-            </a>
-          </div>
-          <div class="app-outer">
-            <div class="app-inner">
-              <template is="dom-repeat" id="moduleList" filter="_checkPermission" items="[[menuOptions]]" as="app">
-                <div class="panel-row">
-                  <div class="content-wrapper panel">
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                      <paper-icon-button class="panel-icon"
-                                        icon="[[app.icon]]"></paper-icon-button>
-                    </a>
-                    <a on-tap="goToPage" href="[[baseSite]]/[[app.url]]/">
-                      <div class="app-title">[[app.title]]</div>
-                    </a>
-                  </div>
-                </div>
+          <div class="etools-apps">
+            <span class="module-group-title">Programme Management</span>
+            <div class="module-group">
+              <a class="content-wrapper panel"
+                href="https://www.unpartnerportal.org/login" target="_blank">
+                <paper-icon-button class="panel-icon"
+                                    icon="unppIcon:unppIcon">
+                </paper-icon-button>
+                <div class="app-title">UN Partner Portal</div>
+                <paper-icon-button class="external"
+                                   icon="external-icon:externalIcon">
+                </paper-icon-button>
+              </a>
+              <template is="dom-if" if="[[_hasPermission('pmp', user)]]">
+                <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/pmp/">
+                  <paper-icon-button class="panel-icon"
+                                    icon="app-selector-icons:pmpIcon">
+                </paper-icon-button>
+                  <div class="app-title">Partnership Management</div>
+                </a>
               </template>
             </div>
-          </div>
-          <template is="dom-if" if="[[isAdmin]]">
-            <div class="content-wrapper-2">
-              <a class="display-flex admin" on-tap="goToAdmin" href="/admin/">
-                <iron-icon class="bottom-icon"
-                          icon="admin-icon:adminIcon">
-                </iron-icon>
-                <span class="weight-500">ADMIN</span>(Permission Required)
+
+            <template is="dom-if" if="[[_hasAnyGroupPermissions(user, 't2f', 'tpm', 'fam', 'psea')]]">
+              <span class="module-group-title">Monitoring & Assurance</span>
+              <div class="module-group">
+                <template is="dom-if" if="[[_hasPermission('t2f', user)]]">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/t2f/">
+                    <paper-icon-button class="panel-icon"
+                                      icon="app-selector-icons:tripsIcon">
+                    </paper-icon-button>
+                    <div class="app-title">Trip Management</div>
+                  </a>
+                </template>
+
+                <template is="dom-if" if="[[_hasPermission('tpm', user)]]">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/tpm/">
+                    <paper-icon-button class="panel-icon"
+                                      icon="app-selector-icons:tpmIcon">
+                    </paper-icon-button>
+                    <div class="app-title">Third Party Monitoring</div>
+                  </a>
+                </template>
+
+                <template is="dom-if" if="[[_hasPermission('fam', user)]]">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/ap/">
+                    <paper-icon-button class="panel-icon"
+                                      icon="app-selector-icons:famIcon">
+                    </paper-icon-button>
+                    <div class="app-title">Financial Assurance</div>
+                  </a>
+                </template>
+
+                <template is="dom-if" if="[[_hasPermission('psea', user)]]">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/psea/">
+                    <paper-icon-button class="panel-icon"
+                                      icon="app-selector-icons:pseaIcon">
+                    </paper-icon-button>
+                    <div class="app-title">PSEA Assurance</div>
+                  </a>
+                </template>
+              </div>
+            </template>
+
+            <span class="module-group-title">Dashboards & Analytics</span>
+            <div class="module-group">
+              <template is="dom-if" if="[[_hasPermission('apd', user)]]">
+                <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/apd/">
+                  <paper-icon-button class="panel-icon"
+                                      icon="app-selector-icons:apdIcon">
+                  </paper-icon-button>
+                  <div class="app-title">Action Points</div>
+                </a>
+              </template>
+
+              <template is="dom-if" if="[[_hasPermission('dash', user)]]">
+                <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/dash/">
+                  <paper-icon-button class="panel-icon"
+                                      icon="app-selector-icons:dashIcon">
+                  </paper-icon-button>
+                  <div class="app-title">Dashboards</div>
+                </a>
+              </template>
+
+              <a class="power-bi content-wrapper panel" target="_blank"
+                href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52">
+                <paper-icon-button class="panel-icon"
+                                    icon="powerBi:powerBiIcon">
+                </paper-icon-button>
+                <div class="app-title">eToolsNOW</div>
+                <paper-icon-button class="external"
+                                    icon="external-icon:externalIcon">
+                </paper-icon-button>
               </a>
-              <!-- DATAMART ICON TO BE ENABLED WHEN BUSINESS REQUESTS -->
-              <!-- <a class="datamart"><iron-icon class="bottom-icon" icon="device:storage"></iron-icon>
-                <a on-tap="goToPage" href="https://datamart.unicef.io" target="_blank"><span class="weight-500">DATAMART</span></a>
-              </a> -->
+
+              <a class="datamart content-wrapper panel"
+                  href="https://datamart.unicef.io" target="_blank">
+                <iron-icon icon="device:storage"></iron-icon>
+                <div class="app-title">Datamart</div>
+                <paper-icon-button class="external"
+                                    icon="external-icon:externalIcon">
+                </paper-icon-button>
+              </a>
             </div>
+          </div>
+
+          <template is="dom-if" if="[[isAdmin]]">
+            <a class="admin"
+                on-tap="goToPage"
+                href$="[[baseSite]]/admin/">
+              <paper-icon-button id="adminIcon"
+                                 class="admin-icon"
+                                 icon="admin-icon:adminIcon">
+              </paper-icon-button>
+              <span class="app-title">ADMIN</span>
+            </a>
           </template>
         </div>
       </iron-collapse>
@@ -262,62 +318,19 @@ App selector menu
             value: false
           },
 
-          /**
-           * Dropdown menu items to display.
-           *
-           * Example object structure:
-           *
-           *     menuOptions = [{
-           *       title: 'Dashboard',
-           *       icon: 'app-selector-icons: dashIcon',
-           *       url: 'dash'
-           *     }]
-           *
-           * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
-           */
-
-          menuOptions: {
-            type: Array,
-            value: [
-              {
-                title: 'Dashboards',
-                icon: 'app-selector-icons:dashIcon',
-                permission: ['UNICEF User'],
-                url: 'dash'
-              },
-              {
-                title: 'Partnership Management',
-                icon: 'app-selector-icons:pmpIcon',
-                permission: ['UNICEF User'],
-                url: 'pmp'
-              },
-              {
-                title: 'Trip Management',
-                icon: 'app-selector-icons:tripsIcon',
-                permission: ['UNICEF User'],
-                url: 't2f'
-              },
-              {
-                title: 'Financial Assurance',
-                icon: 'app-selector-icons:famIcon',
-                permission: ['UNICEF User', 'Auditor'],
-                url: 'ap'
-              },
-              {
-                title: 'Third Party Monitoring',
-                icon: 'app-selector-icons:tpmIcon',
-                permission: ['UNICEF User', 'Third Party Monitor'],
-                url: 'tpm'
-              },
-              {
-                title: 'Action Points',
-                icon: 'app-selector-icons:apdIcon',
-                permission: ['UNICEF User'],
-                url: 'apd'
-              }
-            ],
-            notify: true
+          appPermissionsByGroup: {
+            type: Object,
+            value: {
+              dash: ['UNICEF User'],
+              pmp: ['UNICEF User'],
+              t2f: ['UNICEF User'],
+              tpm: ['UNICEF User', 'Third Party Monitor'],
+              fam: ['UNICEF User', 'Auditor'],
+              apd: ['UNICEF User'],
+              psea: ['all']
+            }
           },
+
           user: {
             type: Object,
             observer: '_renderIcons'
@@ -325,13 +338,14 @@ App selector menu
         };
       }
 
-      ready() {
-        super.ready();
-      }
-
       connectedCallback() {
         super.connectedCallback();
         document.addEventListener('click', this._onCaptureClick.bind(this), true);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        document.removeEventListener('click', this._onCaptureClick.bind(this), true);
       }
 
       /**
@@ -400,16 +414,22 @@ App selector menu
       _renderIcons() {
         if (!this.user) { return false; }
         this.set('isAdmin', this.isAdminUser(this.user))
-        this.$.moduleList.render();
       }
 
       isAdminUser(user) {
         return user.is_superuser === 'True' || this.user.groups.find(group => group.name === 'Country Office Administrator');
       }
 
-      _checkPermission(mod) {
-        if (!this.user) { return false; }
-        return this.user.groups.some(group => mod.permission.includes(group.name));
+      _hasPermission(appName, user) {
+        // checks if user object is populated
+        if (!this.user || (Object.entries(user).length === 0 && user.constructor === Object)) {return false;}
+        let allowedGroups = this.appPermissionsByGroup[appName];
+        if (allowedGroups.indexOf('all') > -1) { return true;}
+        return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
+      }
+
+      _hasAnyGroupPermissions(user, ...moduleArray) {
+        return moduleArray.find(mod => this._hasPermission(mod, user));
       }
     }
 
