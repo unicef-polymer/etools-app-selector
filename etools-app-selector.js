@@ -8,7 +8,7 @@ import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-styles/element-styles/paper-material-styles.js';
 import {dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon,
-        apdIcon, adminIcon, externalIcon, unppLogo, pseaIcon, powerBiIcon} from './app-selector-icons.js';
+        apdIcon, adminIcon, externalIcon, unppIcon, pseaIcon, powerBiIcon} from './app-selector-icons.js';
 
 /**
  * `etools-app-selector`
@@ -150,7 +150,7 @@ class EtoolsAppSelector extends PolymerElement {
               <div class="module-group">
                 <a class="content-wrapper"
                   href="https://www.unpartnerportal.org/login" target="_blank">
-                  ${unppLogo}
+                  ${unppIcon}
                   <div class="app-title">UN Partner Portal</div>
                   ${externalIcon}
                 </a>
