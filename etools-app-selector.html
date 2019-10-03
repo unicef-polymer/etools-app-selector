@@ -372,7 +372,7 @@ App selector menu
        *
        */
       goToPage: function(e) {
-        var path = window.location.origin + '/' + e.model.app.url + '/';
+        var path = window.location.origin + e.currentTarget.pathname;
         this.manageClickEvent(e, path);
       },
 
