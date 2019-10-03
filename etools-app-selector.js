@@ -69,15 +69,12 @@ class EtoolsAppSelector extends PolymerElement {
             white-space: nowrap;
             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
             border-left: 1px solid rgba(0, 0, 0, 0.12);
-          }
-
-          .panel {
             width: 179px;
             height: 100%;
             align-items: center;
           }
 
-          .panel:hover {
+          .content-wrapper:hover {
             background: var(--app-selector-item-hover-color, #eeeeee);
           }
 
@@ -93,12 +90,6 @@ class EtoolsAppSelector extends PolymerElement {
             flex-direction: column;
             justify-content: center;
             max-width: 116px;
-          }
-
-          .weight-500 {
-            font-weight: 500;
-            padding-right: 4px;
-            font-size: 12px;
           }
 
           .etools-apps {
@@ -157,14 +148,14 @@ class EtoolsAppSelector extends PolymerElement {
             <div class="etools-apps">
               <span class="module-group-title">Programme Management</span>
               <div class="module-group">
-                <a class="content-wrapper panel"
+                <a class="content-wrapper"
                   href="https://www.unpartnerportal.org/login" target="_blank">
                   ${unppLogo}
                   <div class="app-title">UN Partner Portal</div>
                   ${externalIcon}
                 </a>
                 <template is="dom-if" if="[[_hasPermission('pmp', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/pmp/">
+                  <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/pmp/">
                     ${pmpIcon}
                     <div class="app-title">Partnership Management</div>
                   </a>
@@ -175,28 +166,28 @@ class EtoolsAppSelector extends PolymerElement {
                 <span class="module-group-title">Monitoring & Assurance</span>
                 <div class="module-group">
                   <template is="dom-if" if="[[_hasPermission('t2f', user)]]">
-                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/t2f/">
+                    <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/t2f/">
                       ${tripsIcon}
                       <div class="app-title">Trip Management</div>
                     </a>
                   </template>
 
                   <template is="dom-if" if="[[_hasPermission('tpm', user)]]">
-                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/tpm/">
+                    <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/tpm/">
                       ${tpmIcon}
                       <div class="app-title">Third Party Monitoring</div>
                     </a>
                   </template>
 
                   <template is="dom-if" if="[[_hasPermission('fam', user)]]">
-                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/ap/">
+                    <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/ap/">
                       ${famIcon}
                       <div class="app-title">Financial Assurance</div>
                     </a>
                   </template>
 
                   <template is="dom-if" if="[[_hasPermission('psea', user)]]">
-                    <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/psea/">
+                    <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/psea/">
                       ${pseaIcon}
                       <div class="app-title">PSEA Assurance</div>
                     </a>
@@ -207,27 +198,27 @@ class EtoolsAppSelector extends PolymerElement {
               <span class="module-group-title">Dashboards & Analytics</span>
               <div class="module-group">
                 <template is="dom-if" if="[[_hasPermission('apd', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/apd/">
+                  <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/apd/">
                     ${apdIcon}
                     <div class="app-title">Action Points</div>
                   </a>
                 </template>
 
                 <template is="dom-if" if="[[_hasPermission('dash', user)]]">
-                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/dash/">
+                  <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/dash/">
                     ${dashIcon}
                     <div class="app-title">Dashboards</div>
                   </a>
                 </template>
 
-                <a class="content-wrapper panel" target="_blank"
+                <a class="content-wrapper" target="_blank"
                    href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52">
                   ${powerBiIcon}
                   <div class="app-title">eToolsNOW</div>
                   ${externalIcon}
                 </a>
 
-                <a class="datamart content-wrapper panel"
+                <a class="datamart content-wrapper"
                     href="https://datamart.unicef.io" target="_blank">
                   <iron-icon icon="device:storage"></iron-icon>
                   <div class="app-title">Datamart</div>
