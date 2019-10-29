@@ -79,15 +79,14 @@ class EtoolsAppSelector extends PolymerElement {
           }
 
           .app-title {
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 500;
             padding-left: 6px;
             padding-right: 6px;
             line-height: 1.2;
             cursor: pointer;
             white-space: normal;
-            display: flex;
-            flex-direction: column;
+            display: block;
             justify-content: center;
             max-width: 116px;
           }
@@ -214,7 +213,7 @@ class EtoolsAppSelector extends PolymerElement {
                 <a class="content-wrapper" target="_blank"
                    href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52">
                   ${powerBiIcon}
-                  <div class="app-title">eToolsNOW</div>
+                  <span class="app-title">Implementation Intelligence (I<sup>2</sup>)</span>
                   ${externalIcon}
                 </a>
 
