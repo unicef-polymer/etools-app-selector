@@ -1,7 +1,7 @@
 {
   "description": "App selector menu",
   "name": "@unicef-polymer/etools-app-selector",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "homepage": "https://github.com/unicef-polymer/etools-app-selector",
   "repository": {
     "type": "git",
