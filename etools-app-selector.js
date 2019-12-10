@@ -7,8 +7,10 @@ import '@polymer/iron-icons/device-icons.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-styles/element-styles/paper-material-styles.js';
-import {dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon,
-        apdIcon, adminIcon, externalIcon, unppIcon, pseaIcon, powerBiIcon} from './app-selector-icons.js';
+import {
+  dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon,
+  apdIcon, adminIcon, externalIcon, unppIcon, pseaIcon, powerBiIcon
+} from './app-selector-icons.js';
 
 /**
  * `etools-app-selector`
@@ -36,7 +38,7 @@ class EtoolsAppSelector extends PolymerElement {
             @apply --layout-horizontal;
             width: 24px;
             height: 24px;
-            padding: 18px 24px 18px 24px;
+            --paper-icon-button_-_padding: var(--app-selector-button-padding, 18px 24px 18px 24px);
             color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
             border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
             z-index: 100;
@@ -135,6 +137,12 @@ class EtoolsAppSelector extends PolymerElement {
             --iron-icon-height: 36px;
             --iron-icon-width: 36px;
             --iron-icon-fill-color: var(--light-theme-secondary-color, #cccccc);
+          }
+
+          @media (max-width: 768px) {
+            paper-icon-button.apps-button {
+            --paper-icon-button_-_padding: var(--app-selector-button-padding, 18px 12px);
+            }
           }
         </style>
       </custom-style>
@@ -367,12 +375,12 @@ class EtoolsAppSelector extends PolymerElement {
     // checks if user object is populated
     if (!this.user || (Object.entries(user).length === 0 && user.constructor === Object)) {return false;}
     let allowedGroups = this.appPermissionsByGroup[appName];
-    if (allowedGroups.indexOf('all') > -1) { return true;}
+    if (allowedGroups.indexOf('all') > -1) {return true;}
     return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
   }
 
   checkIsAdmin() {
-    if (!this.user || (Object.entries(this.user).length === 0 && this.user.constructor === Object)) { return false; }
+    if (!this.user || (Object.entries(this.user).length === 0 && this.user.constructor === Object)) {return false;}
     let isAdmin = this.user.is_superuser === 'True' ||
       this.user.groups.find(group => group.name === 'Country Office Administrator');
     this.set('isAdmin', isAdmin);
