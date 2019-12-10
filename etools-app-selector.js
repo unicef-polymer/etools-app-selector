@@ -138,6 +138,12 @@ class EtoolsAppSelector extends PolymerElement {
             --iron-icon-width: 36px;
             --iron-icon-fill-color: var(--light-theme-secondary-color, #cccccc);
           }
+
+          @media (max-width: 768px) {
+            paper-icon-button.apps-button {
+            --paper-icon-button_-_padding: var(--app-selector-button-padding, 18px 12px);
+            }
+          }
         </style>
       </custom-style>
 
