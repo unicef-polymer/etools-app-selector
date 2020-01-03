@@ -372,8 +372,11 @@ class EtoolsAppSelector extends PolymerElement {
   }
 
   _hasPermission(appName, user) {
+    debugger
     // checks if user object is populated
     if (!this.user || (Object.entries(user).length === 0 && user.constructor === Object)) {return false;}
+    // removes PSEA if user is a TPM
+    if (appName === 'psea' && user.groups.some(group => group.name === 'Third Party Monitor')) {return false;}
     let allowedGroups = this.appPermissionsByGroup[appName];
     if (allowedGroups.indexOf('all') > -1) {return true;}
     return user.groups.some(group => allowedGroups.indexOf(group.name) > -1);
