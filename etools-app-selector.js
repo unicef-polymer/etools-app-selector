@@ -372,7 +372,6 @@ class EtoolsAppSelector extends PolymerElement {
   }
 
   _hasPermission(appName, user) {
-    debugger
     // checks if user object is populated
     if (!this.user || (Object.entries(user).length === 0 && user.constructor === Object)) {return false;}
     // removes PSEA if user is a TPM
