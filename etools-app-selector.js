@@ -38,7 +38,7 @@ class EtoolsAppSelector extends PolymerElement {
             @apply --layout-horizontal;
             width: 24px;
             height: 24px;
-            --paper-icon-button_-_padding: var(--app-selector-button-padding, 18px 24px 18px 24px);
+            padding: var(--app-selector-button-padding, 18px 24px 18px 24px);
             color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
             border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
             z-index: 100;
@@ -141,7 +141,7 @@ class EtoolsAppSelector extends PolymerElement {
 
           @media (max-width: 768px) {
             paper-icon-button.apps-button {
-            --paper-icon-button_-_padding: var(--app-selector-button-padding, 18px 12px);
+              padding: var(--app-selector-button-padding, 18px 12px);
             }
           }
         </style>
