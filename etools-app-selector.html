@@ -221,6 +221,15 @@ App selector menu
                     <div class="app-title">PSEA Assurance</div>
                   </a>
                 </template>
+
+                <template is="dom-if" if="[[_hasPermission('fm', user)]]">
+                  <a class="content-wrapper panel" on-tap="goToPage" href$="[[baseSite]]/fm/">
+                    <paper-icon-button class="panel-icon"
+                                      icon="app-selector-icons:fmIcon">
+                    </paper-icon-button>
+                    <div class="app-title">Field Monitoring</div>
+                  </a>
+                </template>
               </div>
             </template>
 
@@ -320,7 +329,8 @@ App selector menu
               tpm: ['UNICEF User', 'Third Party Monitor'],
               fam: ['UNICEF User', 'Auditor'],
               apd: ['UNICEF User'],
-              psea: ['all']
+              psea: ['all'],
+              fm: ['UNICEF User', 'Third Party Monitor']
             }
           },
 
