@@ -8,7 +8,7 @@ import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-styles/element-styles/paper-material-styles.js';
 import {
-  dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon,
+  dashIcon, pmpIcon, tripsIcon, famIcon, tpmIcon, fmIcon,
   apdIcon, adminIcon, externalIcon, unppIcon, pseaIcon, powerBiIcon
 } from './app-selector-icons.js';
 
@@ -199,6 +199,13 @@ class EtoolsAppSelector extends PolymerElement {
                       <div class="app-title">PSEA Assurance</div>
                     </a>
                   </template>
+
+                  <template is="dom-if" if="[[_hasPermission('fm', user)]]">
+                    <a class="content-wrapper" on-tap="goToPage" href$="[[baseSite]]/fm/">
+                      ${fmIcon}
+                      <div class="app-title">Field Monitoring</div>
+                    </a>
+                  </template>
                 </div>
               </template>
 
@@ -288,7 +295,8 @@ class EtoolsAppSelector extends PolymerElement {
           tpm: ['UNICEF User', 'Third Party Monitor'],
           fam: ['UNICEF User', 'Auditor'],
           apd: ['UNICEF User'],
-          psea: ['all']
+          psea: ['all'],
+          fm: ['UNICEF User', 'Third Party Monitor']
         }
       }
     };
