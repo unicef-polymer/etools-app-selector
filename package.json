@@ -1,12 +1,47 @@
 {
-  "name": "etools-app-selector",
+  "description": "App selector menu",
+  "name": "@unicef-polymer/etools-app-selector",
+  "version": "3.1.5",
+  "homepage": "https://github.com/unicef-polymer/etools-app-selector",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unicef-polymer/etools-app-selector.git"
+  },
+  "license": "BSD-3-Clause",
   "devDependencies": {
-    "eslint": "^6.6.0",
+    "@polymer/iron-component-page": "^4.0.0",
+    "@polymer/iron-demo-helpers": "^3.0.0",
+    "@polymer/gen-typescript-declarations": "^1.6.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.0",
-    "eslint-plugin-html": "^2.0.0"
+    "eslint-plugin-html": "^2.0.0",
+    "wct-browser-legacy": "^0.0.1-pre.11"
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint && exit 0",
-    "lint:javascript": "eslint . --ext js,html && exit 0"
-  }
+    "lint:javascript": "eslint . --ext js,html && exit 0",
+    "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'"
+  },
+  "resolutions": {
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0",
+    "@webcomponents/webcomponentsjs": "2.0.0-beta.2"
+  },
+  "main": "etools-app-selector.js",
+  "dependencies": {
+    "@polymer/polymer": "^3.2.0",
+    "@polymer/iron-collapse": "^3.0.0",
+    "@polymer/paper-icon-button": "^3.0.0",
+    "@polymer/paper-styles": "^3.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/unicef-polymer/etools-app-selector/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": ""
 }

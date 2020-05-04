@@ -6,10 +6,10 @@
 
     <title>etools-app-selector test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
 
-    <link rel="import" href="../etools-app-selector.html">
+    <script type="module" src="../etools-app-selector.js"></script>
   </head>
   <body>
     <test-fixture id="basic">
@@ -18,13 +18,14 @@
       </template>
     </test-fixture>
 
-    <script>
-      suite('etools-app-selector', function() {
-        test('instantiating the element works', function() {
-          var element = fixture('basic');
-          epect(element).to.not.equal(undefined);
-        });
-      });
-    </script>
+    <script type="module">
+import '../etools-app-selector.js';
+suite('etools-app-selector', function() {
+  test('instantiating the element works', function() {
+    var element = fixture('basic');
+    epect(element).to.not.equal(undefined);
+  });
+});
+</script>
   </body>
 </html>
