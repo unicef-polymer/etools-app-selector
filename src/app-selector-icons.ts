@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-import {html} from 'lit-element';
+import {html, TemplateResult} from 'lit-element';
 
-export const dashIcon = html`<svg id="dashIcon" height="36" viewBox="0 0 72 72" width="36">
+export const dashIcon: TemplateResult = html`<svg id="dashIcon" height="36" viewBox="0 0 72 72" width="36">
   <g id="dashIcon">
     <polygon id="Shape" fill="#009A54" points="0,0 72,0 72,72 0,72"></polygon>
     <path
@@ -17,7 +17,7 @@ export const dashIcon = html`<svg id="dashIcon" height="36" viewBox="0 0 72 72" 
   </g>
 </svg>`;
 
-export const pmpIcon = html` <svg height="36" viewBox="0 0 72 72" width="36">
+export const pmpIcon: TemplateResult = html` <svg height="36" viewBox="0 0 72 72" width="36">
   <g id="pmpIcon">
     <polygon id="pmShape" fill="#0099FF" points="0,0 72,0 72,72 0,72     " />
     <path
@@ -36,7 +36,7 @@ export const pmpIcon = html` <svg height="36" viewBox="0 0 72 72" width="36">
   </g>
 </svg>`;
 
-export const tripsIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const tripsIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
   <g id="tripsIcon">
     <polygon id="tripShape" fill="#0061E9" points="0,0 72,0 72,72 0,72     " />
     <path
@@ -57,7 +57,7 @@ export const tripsIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
   </g>
 </svg>`;
 
-export const famIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const famIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
   <g id="famIcon">
     <polygon id="Shape" fill="#4B6F80" points="0 0 72 0 72 72 0 72"></polygon>
     <path
@@ -87,7 +87,7 @@ export const famIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
   </g>
 </svg>`;
 
-export const pseaIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const pseaIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
   <g id="pseaIcon">
     <polygon id="Shape" fill="#0099ff" points="0 0 72 0 72 72 0 72"></polygon>
     <path
@@ -117,7 +117,7 @@ export const pseaIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
   </g>
 </svg>`;
 
-export const adminIcon = html`<svg height="24" viewBox="0 0 20 20" width="24">
+export const adminIcon: TemplateResult = html`<svg height="24" viewBox="0 0 20 20" width="24">
   <g id="adminIcon">
     <path fill="none" d="M0 0h20v20H0V0z" />
     <path
@@ -127,7 +127,7 @@ export const adminIcon = html`<svg height="24" viewBox="0 0 20 20" width="24">
   </g>
 </svg>`;
 
-export const tpmIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const tpmIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
   <g id="tpmIcon">
     <polygon id="Shape" fill="#72C300" points="0 0 72 0 72 72 0 72"></polygon>
     <polygon id="Line" fill="#FFFFFF" fill-rule="nonzero" points="27 21 41 21 41 18 27 18"></polygon>
@@ -144,7 +144,7 @@ export const tpmIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
   </g>
 </svg>`;
 
-export const apdIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
+export const apdIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
   <g id="apdIcon" fill-rule="nonzero">
     <polygon id="Shape" fill="#00B8D4" points="0 0 72 0 72 72 0 72"></polygon>
     <polygon
@@ -155,7 +155,7 @@ export const apdIcon = html`<svg height="36" viewBox="0 0 72 72" width="36">
   </g>
 </svg>`;
 
-export const unppIcon = html`<svg
+export const unppIcon: TemplateResult = html`<svg
   width="36px"
   height="36px"
   viewBox="0 0 36 32"
@@ -458,7 +458,7 @@ export const unppIcon = html`<svg
   </g>
 </svg>`;
 
-export const etoolsLogo = html`<svg
+export const etoolsLogo: TemplateResult = html`<svg
   width="104"
   height="32"
   viewBox="0 0 400 110"
@@ -519,7 +519,7 @@ export const etoolsLogo = html`<svg
   </g>
 </svg>`;
 
-export const powerBiIcon = html` <svg id="powerBiIcon" height="36" viewBox="0 0 36 36" width="36">
+export const powerBiIcon: TemplateResult = html` <svg id="powerBiIcon" height="36" viewBox="0 0 36 36" width="36">
   <g id="power-bi">
     <path
       clip-path="url(#SVGID_2_)"
@@ -556,7 +556,7 @@ export const powerBiIcon = html` <svg id="powerBiIcon" height="36" viewBox="0 0 
   </g>
 </svg>`;
 
-export const externalIcon = html`
+export const externalIcon: TemplateResult = html`
   <svg id="externalIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
     <path d="M0 0h24v24H0z" fill="none" />
     <path
@@ -565,7 +565,12 @@ export const externalIcon = html`
   </svg>
 `;
 
-export const fmIcon = html` <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 72 72" width="36">
+export const fmIcon: TemplateResult = html` <svg
+  xmlns="http://www.w3.org/2000/svg"
+  height="36"
+  viewBox="0 0 72 72"
+  width="36"
+>
   <g id="fmIcon">
     <polygon id="Shape" fill="#008080" points="0 0 72 0 72 72 0 72"></polygon>
     <path
@@ -575,13 +580,3 @@ export const fmIcon = html` <svg xmlns="http://www.w3.org/2000/svg" height="36" 
     />
   </g>
 </svg>`;
-
-export const appsIcon = html`
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-    <g id="apps">
-      <path
-        d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"
-      ></path>
-    </g>
-  </svg>
-`;

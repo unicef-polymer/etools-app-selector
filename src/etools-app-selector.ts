@@ -2,7 +2,6 @@ import {LitElement, html, customElement, property, css, CSSResult} from 'lit-ele
 import {
   adminIcon,
   apdIcon,
-  appsIcon,
   dashIcon,
   externalIcon,
   famIcon,
@@ -14,6 +13,7 @@ import {
   tripsIcon,
   unppIcon
 } from './app-selector-icons';
+import '@material/mwc-icon-button';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
 
 export enum Applications {
@@ -35,7 +35,7 @@ export enum GROUPS {
   CO_ADMINISTRATOR = 'Country Office Administrator'
 }
 
-@customElement('app-selector')
+@customElement('etools-app-selector')
 export class AppSelector extends LitElement {
   // language=css
   static styles: CSSResult = css`
@@ -43,26 +43,21 @@ export class AppSelector extends LitElement {
       display: flex;
       flex-direction: column;
       position: relative;
-    }
-
-    .toggle-button {
-      width: 72px;
+      width: 73px;
       height: 60px;
-      display: flex;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
-      cursor: pointer;
     }
-    .toggle-button path {
-      fill: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
-    }
-    .toggle-button.opened {
+
+    :host(.opened) {
       background: #ffffff;
-      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
     }
-    .toggle-button.opened path {
-      fill: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+
+    mwc-icon-button {
+      color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+    }
+    :host(.opened) mwc-icon-button {
+      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
     }
 
     .dropdown {
@@ -78,7 +73,7 @@ export class AppSelector extends LitElement {
       z-index: 90;
     }
 
-    .dropdown.opened {
+    :host(.opened) .dropdown {
       transform: scaleY(1);
     }
 
@@ -179,7 +174,6 @@ export class AppSelector extends LitElement {
   `;
 
   @property({type: String}) baseSite: string = window.location.origin;
-  @property({type: String}) openedClass: string = '';
   @property({type: Array}) allowedAps: Applications[] = [];
   set user(user: EtoolsUser) {
     this.setPermissions(user);
@@ -197,9 +191,9 @@ export class AppSelector extends LitElement {
 
   render(): unknown {
     return html`
-      <div class="toggle-button ${this.openedClass}" @click="${this.toggleMenu}">${appsIcon}</div>
+      <mwc-icon-button icon="apps" @click="${this.toggleMenu}"></mwc-icon-button>
 
-      <div class="dropdown ${this.openedClass}">
+      <div class="dropdown">
         <div class="etools-apps">
           <span class="module-group-title">Programme Management</span>
           <div class="module-group">
@@ -320,7 +314,7 @@ export class AppSelector extends LitElement {
    *
    */
   toggleMenu(): void {
-    this.openedClass = this.openedClass ? '' : 'opened';
+    this.classList.contains('opened') ? this.classList.remove('opened') : this.classList.add('opened');
   }
 
   checkAllowedApps(applications: Applications[]): boolean {

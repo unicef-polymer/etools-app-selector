@@ -1,16 +1,19 @@
 {
   "description": "App selector menu",
   "name": "@unicef-polymer/etools-app-selector",
-  "version": "4.0.0-rc1",
+  "version": "4.0.1-rc1",
   "homepage": "https://github.com/unicef-polymer/etools-app-selector",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/unicef-polymer/etools-app-selector.git"
   },
+  "files": [
+    "dist"
+  ],
   "license": "BSD-3-Clause",
   "scripts": {
     "build": "tsc --skipLibCheck",
-    "lint": "./node_modules/eslint/bin/eslint.js './etools-app-selector.ts'",
+    "lint": "./node_modules/eslint/bin/eslint.js 'src/**'",
     "prepare": "rm -rf ./dist && npm run build",
     "prepublishOnly": "npm run lint"
   },
@@ -18,6 +21,7 @@
   "types": "dist/etools-app-selector.d.ts",
   "dependencies": {
     "lit-element": "^2.4.0",
+    "@material/mwc-icon-button": "^0.25.1",
     "@unicef-polymer/etools-types": "^1.11.2"
   },
   "devDependencies": {
