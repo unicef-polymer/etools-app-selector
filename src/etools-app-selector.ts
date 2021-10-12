@@ -14,6 +14,7 @@ import {
   unppIcon
 } from './app-selector-icons';
 import '@material/mwc-icon-button';
+import '@material/mwc-icon';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
 
 export enum Applications {
@@ -47,6 +48,7 @@ export class AppSelector extends LitElement {
       height: 60px;
       align-items: center;
       justify-content: center;
+      border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
     }
 
     :host(.opened) {
@@ -160,16 +162,9 @@ export class AppSelector extends LitElement {
       color: #444444;
     }
 
-    .datamart > iron-icon {
-      --iron-icon-height: 36px;
-      --iron-icon-width: 36px;
-      --iron-icon-fill-color: var(--light-theme-secondary-color, #cccccc);
-    }
-
-    @media (max-width: 768px) {
-      paper-icon-button.apps-button {
-        padding: var(--app-selector-button-padding, 18px 12px);
-      }
+    .datamart > mwc-icon {
+      --mdc-icon-size: 36px;
+      color: var(--light-theme-secondary-color, #cccccc);
     }
   `;
 
@@ -197,14 +192,19 @@ export class AppSelector extends LitElement {
         <div class="etools-apps">
           <span class="module-group-title">Programme Management</span>
           <div class="module-group">
-            <a class="content-wrapper" href="https://www.unpartnerportal.org/login" target="_blank">
+            <a
+              class="content-wrapper"
+              @tap="${this.goToPage}"
+              href="https://www.unpartnerportal.org/login"
+              target="_blank"
+            >
               ${unppIcon}
               <div class="app-title">UN Partner Portal</div>
               ${externalIcon}
             </a>
             ${this.checkAllowedApps([Applications.PMP])
               ? html`
-                  <a class="content-wrapper" href="${this.baseSite}/${Applications.PMP}/">
+                  <a class="content-wrapper" @tap="${this.goToPage}" href="${this.baseSite}/${Applications.PMP}/">
                     ${pmpIcon}
                     <div class="app-title">Partnership Management</div>
                   </a>
@@ -218,7 +218,7 @@ export class AppSelector extends LitElement {
                 <div class="module-group">
                   ${this.checkAllowedApps([Applications.T2F])
                     ? html`
-                        <a class="content-wrapper" href="${this.baseSite}/${Applications.T2F}/">
+                        <a class="content-wrapper" @tap="${this.goToPage}" href="${this.baseSite}/${Applications.T2F}/">
                           ${tripsIcon}
                           <div class="app-title">Trip Management</div>
                         </a>
@@ -226,7 +226,7 @@ export class AppSelector extends LitElement {
                     : ''}
                   ${this.checkAllowedApps([Applications.TPM])
                     ? html`
-                        <a class="content-wrapper" href="${this.baseSite}/${Applications.TPM}/">
+                        <a class="content-wrapper" @tap="${this.goToPage}" href="${this.baseSite}/${Applications.TPM}/">
                           ${tpmIcon}
                           <div class="app-title">Third Party Monitoring</div>
                         </a>
@@ -234,7 +234,7 @@ export class AppSelector extends LitElement {
                     : ''}
                   ${this.checkAllowedApps([Applications.AP])
                     ? html`
-                        <a class="content-wrapper" href="${this.baseSite}/${Applications.AP}/">
+                        <a class="content-wrapper" @tap="${this.goToPage}" href="${this.baseSite}/${Applications.AP}/">
                           ${famIcon}
                           <div class="app-title">Financial Assurance</div>
                         </a>
@@ -242,7 +242,11 @@ export class AppSelector extends LitElement {
                     : ''}
                   ${this.checkAllowedApps([Applications.PSEA])
                     ? html`
-                        <a class="content-wrapper" href="${this.baseSite}/${Applications.PSEA}/">
+                        <a
+                          class="content-wrapper"
+                          @tap="${this.goToPage}"
+                          href="${this.baseSite}/${Applications.PSEA}/"
+                        >
                           ${pseaIcon}
                           <div class="app-title">PSEA Assurance</div>
                         </a>
@@ -250,7 +254,7 @@ export class AppSelector extends LitElement {
                     : ''}
                   ${this.checkAllowedApps([Applications.FM])
                     ? html`
-                        <a class="content-wrapper" href="${this.baseSite}/${Applications.FM}/">
+                        <a class="content-wrapper" @tap="${this.goToPage}" href="${this.baseSite}/${Applications.FM}/">
                           ${fmIcon}
                           <div class="app-title">Field Monitoring</div>
                         </a>
@@ -264,7 +268,7 @@ export class AppSelector extends LitElement {
           <div class="module-group">
             ${this.checkAllowedApps([Applications.APD])
               ? html`
-                  <a class="content-wrapper" href="${this.baseSite}/${Applications.APD}/">
+                  <a class="content-wrapper" @tap="${this.goToPage}" href="${this.baseSite}/${Applications.APD}/">
                     ${apdIcon}
                     <div class="app-title">Action Points</div>
                   </a>
@@ -272,7 +276,7 @@ export class AppSelector extends LitElement {
               : ''}
             ${this.checkAllowedApps([Applications.DASH])
               ? html`
-                  <a class="content-wrapper" href="${this.baseSite}/${Applications.DASH}/">
+                  <a class="content-wrapper" @tap="${this.goToPage}" href="${this.baseSite}/${Applications.DASH}/">
                     ${dashIcon}
                     <div class="app-title">Dashboards</div>
                   </a>
@@ -290,7 +294,7 @@ export class AppSelector extends LitElement {
             </a>
 
             <a class="datamart content-wrapper" href="https://datamart.unicef.io" target="_blank">
-              <iron-icon icon="device:storage"></iron-icon>
+              <mwc-icon>storage</mwc-icon>
               <div class="app-title">Datamart</div>
               ${externalIcon}
             </a>
@@ -309,6 +313,16 @@ export class AppSelector extends LitElement {
     `;
   }
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    document.addEventListener('tap', () => {
+      if (this.classList.contains('opened')) {
+        this.classList.remove('opened');
+      }
+    });
+    this.addEventListener('tap', (e: Event) => e.stopPropagation());
+  }
+
   /**
    * Toggles the menu opened and closed
    *
@@ -319,6 +333,14 @@ export class AppSelector extends LitElement {
 
   checkAllowedApps(applications: Applications[]): boolean {
     return applications.some((application: Applications) => this.allowedAps.includes(application));
+  }
+
+  // [ch14186], https://github.com/unicef-polymer/etools-app-selector/pull/54/files
+  goToPage(e: any): void {
+    const path: string = (e.target! as HTMLElement).closest('a')?.getAttribute('href') || '';
+    if (!e.detail.sourceEvent.ctrlKey && !e.detail.sourceEvent.metaKey) {
+      window.location.href = path;
+    }
   }
 
   private setPermissions(user: EtoolsUser): void {
