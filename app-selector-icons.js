@@ -1,6 +1,6 @@
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
-import { html } from '@polymer/polymer/polymer-element.js';
+import {html} from '@polymer/polymer/polymer-element.js';
 
 export const dashIcon = html`<svg
   id="dashIcon"
