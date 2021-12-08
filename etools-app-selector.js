@@ -148,7 +148,7 @@ class EtoolsAppSelector extends PolymerElement {
       </custom-style>
 
       <div class="container" id="etools-selector">
-        <paper-icon-button on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
+        <paper-icon-button title="[[iconTitle]]" on-tap="toggleMenu" class$="apps-button [[opened]]" icon="apps"></paper-icon-button>
         <iron-collapse id="selector" class="apps-select">
           <div class="paper-material" elevation="5">
 
@@ -280,6 +280,10 @@ class EtoolsAppSelector extends PolymerElement {
       opened: {
         type: String,
         value: ''
+      },
+      iconTitle: {
+        type: String,
+        value: 'App Selector'
       },
       user: {
         type: Object,
