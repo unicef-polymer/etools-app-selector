@@ -186,7 +186,7 @@ export class AppSelector extends LitElement {
   `;
 
   @property({type: String, attribute: 'language'}) language: string = '';
-  @property({type: String}) iconTitle: string = '';
+  @property({type: String}) iconTitle: string = 'APP_SELECTOR';
   @property({type: String}) baseSite: string = window.location.origin;
   @property({type: Array}) allowedAps: Applications[] = [];
   set user(user: EtoolsUser) {
@@ -205,7 +205,12 @@ export class AppSelector extends LitElement {
 
   render(): unknown {
     return html`
-      <mwc-icon-button .title="${this.iconTitle}" @click="${this.toggleMenu}"> ${appsIcon} </mwc-icon-button>
+      <mwc-icon-button
+        .title="${this.iconTitle === 'APP_SELECTOR' ? getTranslation(this.language, 'APP_SELECTOR') : this.iconTitle}"
+        @click="${this.toggleMenu}"
+      >
+        ${appsIcon}
+      </mwc-icon-button>
 
       <div class="dropdown">
         <div class="etools-apps">
@@ -357,11 +362,6 @@ export class AppSelector extends LitElement {
         this.classList.remove('opened');
       }
     });
-
-    if (!this.iconTitle) {
-      this.iconTitle = getTranslation(this.language, 'APP_SELECTOR');
-    }
-
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
     this.addEventListener('tap', (e: Event) => e.stopPropagation());
   }
