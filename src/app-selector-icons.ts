@@ -2,7 +2,13 @@
 import {html, TemplateResult} from 'lit-element';
 import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
 
-export const appsIcon: TemplateResult = html`<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"></path></g></svg>`;
+export const appsIcon: TemplateResult = html`<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+  <g>
+    <path
+      d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"
+    ></path>
+  </g>
+</svg>`;
 
 export const dashIcon: TemplateResult = html`<svg height="36" viewBox="0 0 72 72" width="36">
   <g id="dashIcon">
@@ -522,7 +528,13 @@ export const etoolsLogo: TemplateResult = html`<svg
   </g>
 </svg>`;
 
-export const powerBiIcon: TemplateResult = html` <svg id="powerBiIcon" height="36" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36" width="36">
+export const powerBiIcon: TemplateResult = html` <svg
+  id="powerBiIcon"
+  height="36"
+  preserveAspectRatio="xMidYMid meet"
+  viewBox="0 0 36 36"
+  width="36"
+>
   <g id="power-bi">
     <path
       clip-path="url(#SVGID_2_)"
@@ -584,5 +596,12 @@ export const fmIcon: TemplateResult = html` <svg
   </g>
 </svg>`;
 
-
-export const storageIcon: TemplateResult = html`<svg id="storageIcon" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" width="36"  height="36" ><g><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"></path></g></svg>`;
+export const storageIcon: TemplateResult = html`<svg
+  id="storageIcon"
+  viewBox="0 0 24 24"
+  preserveAspectRatio="xMidYMid meet"
+  width="36"
+  height="36"
+>
+  <g><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"></path></g>
+</svg>`;

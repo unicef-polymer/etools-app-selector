@@ -18,7 +18,7 @@ import {
 import '@material/mwc-icon-button';
 import '@material/mwc-icon';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
-import { getTranslation } from './utils/translation-helper';
+import {getTranslation} from './utils/translation-helper';
 
 export enum Applications {
   PMP = 'pmp',
@@ -185,7 +185,7 @@ export class AppSelector extends LitElement {
     }
   `;
 
-  @property({type: String, attribute:'language'}) language: string = '';
+  @property({type: String, attribute: 'language'}) language: string = '';
   @property({type: String}) iconTitle: string = '';
   @property({type: String}) baseSite: string = window.location.origin;
   @property({type: Array}) allowedAps: Applications[] = [];
@@ -205,10 +205,8 @@ export class AppSelector extends LitElement {
 
   render(): unknown {
     return html`
-    <mwc-icon-button .title="${this.iconTitle}" @click="${this.toggleMenu}">
-      ${appsIcon}
-      </mwc-icon-button>
- 
+      <mwc-icon-button .title="${this.iconTitle}" @click="${this.toggleMenu}"> ${appsIcon} </mwc-icon-button>
+
       <div class="dropdown">
         <div class="etools-apps">
           <span class="module-group-title">${getTranslation(this.language, 'PROGRAMME_MANAGEMENT')}</span>
@@ -239,7 +237,11 @@ export class AppSelector extends LitElement {
                 <div class="module-group">
                   ${this.checkAllowedApps([Applications.T2F])
                     ? html`
-                        <a class="content-wrapper" @click="${this.goToPage}" href="${this.baseSite}/${Applications.T2F}/">
+                        <a
+                          class="content-wrapper"
+                          @click="${this.goToPage}"
+                          href="${this.baseSite}/${Applications.T2F}/"
+                        >
                           ${tripsIcon}
                           <div class="app-title">${getTranslation(this.language, 'TRIP_MANAGEMENT')}</div>
                         </a>
@@ -247,7 +249,11 @@ export class AppSelector extends LitElement {
                     : ''}
                   ${this.checkAllowedApps([Applications.TPM])
                     ? html`
-                        <a class="content-wrapper" @click="${this.goToPage}" href="${this.baseSite}/${Applications.TPM}/">
+                        <a
+                          class="content-wrapper"
+                          @click="${this.goToPage}"
+                          href="${this.baseSite}/${Applications.TPM}/"
+                        >
                           ${tpmIcon}
                           <div class="app-title">${getTranslation(this.language, 'THIRD_PARTY_MONITORING')}</div>
                         </a>
@@ -255,7 +261,11 @@ export class AppSelector extends LitElement {
                     : ''}
                   ${this.checkAllowedApps([Applications.AP])
                     ? html`
-                        <a class="content-wrapper" @click="${this.goToPage}" href="${this.baseSite}/${Applications.AP}/">
+                        <a
+                          class="content-wrapper"
+                          @click="${this.goToPage}"
+                          href="${this.baseSite}/${Applications.AP}/"
+                        >
                           ${famIcon}
                           <div class="app-title">${getTranslation(this.language, 'FINANCIAL_ASSURANCE')}</div>
                         </a>
@@ -275,7 +285,11 @@ export class AppSelector extends LitElement {
                     : ''}
                   ${this.checkAllowedApps([Applications.FM])
                     ? html`
-                        <a class="content-wrapper" @click="${this.goToPage}" href="${this.baseSite}/${Applications.FM}/">
+                        <a
+                          class="content-wrapper"
+                          @click="${this.goToPage}"
+                          href="${this.baseSite}/${Applications.FM}/"
+                        >
                           ${fmIcon}
                           <div class="app-title">${getTranslation(this.language, 'FIELD_MONITORING')}</div>
                         </a>
@@ -310,7 +324,9 @@ export class AppSelector extends LitElement {
               href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52"
             >
               ${powerBiIcon}
-              <span class="app-title">${getTranslation(this.language, 'IMPLEMENTATION_INTELLIGENCE')} (I<sup>2</sup>)</span>
+              <span class="app-title"
+                >${getTranslation(this.language, 'IMPLEMENTATION_INTELLIGENCE')} (I<sup>2</sup>)</span
+              >
               ${externalIcon}
             </a>
 
@@ -342,7 +358,7 @@ export class AppSelector extends LitElement {
       }
     });
 
-    if(!this.iconTitle){
+    if (!this.iconTitle) {
       this.iconTitle = getTranslation(this.language, 'APP_SELECTOR');
     }
 
