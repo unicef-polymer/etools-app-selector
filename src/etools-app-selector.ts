@@ -218,6 +218,7 @@ export class AppSelector extends LitElement {
           <div class="module-group">
             <a
               class="content-wrapper"
+              rel="external"
               @click="${this.goToPage}"
               href="https://www.unpartnerportal.org/login"
               target="_blank"
@@ -228,7 +229,12 @@ export class AppSelector extends LitElement {
             </a>
             ${this.checkAllowedApps([Applications.PMP])
               ? html`
-                  <a class="content-wrapper" @click="${this.goToPage}" href="${this.baseSite}/${Applications.PMP}/">
+                  <a
+                    class="content-wrapper"
+                    rel="external"
+                    @click="${this.goToPage}"
+                    href="${this.baseSite}/${Applications.PMP}/"
+                  >
                     ${pmpIcon}
                     <div class="app-title">${getTranslation(this.language, 'PARTNERSHIP_MANAGEMENT')}</div>
                   </a>
@@ -244,6 +250,7 @@ export class AppSelector extends LitElement {
                     ? html`
                         <a
                           class="content-wrapper"
+                          rel="external"
                           @click="${this.goToPage}"
                           href="${this.baseSite}/${Applications.T2F}/"
                         >
@@ -256,6 +263,7 @@ export class AppSelector extends LitElement {
                     ? html`
                         <a
                           class="content-wrapper"
+                          rel="external"
                           @click="${this.goToPage}"
                           href="${this.baseSite}/${Applications.TPM}/"
                         >
@@ -268,6 +276,7 @@ export class AppSelector extends LitElement {
                     ? html`
                         <a
                           class="content-wrapper"
+                          rel="external"
                           @click="${this.goToPage}"
                           href="${this.baseSite}/${Applications.AP}/"
                         >
@@ -280,6 +289,7 @@ export class AppSelector extends LitElement {
                     ? html`
                         <a
                           class="content-wrapper"
+                          rel="external"
                           @click="${this.goToPage}"
                           href="${this.baseSite}/${Applications.PSEA}/"
                         >
@@ -292,6 +302,7 @@ export class AppSelector extends LitElement {
                     ? html`
                         <a
                           class="content-wrapper"
+                          rel="external"
                           @click="${this.goToPage}"
                           href="${this.baseSite}/${Applications.FM}/"
                         >
@@ -308,7 +319,12 @@ export class AppSelector extends LitElement {
           <div class="module-group">
             ${this.checkAllowedApps([Applications.APD])
               ? html`
-                  <a class="content-wrapper" @click="${this.goToPage}" href="${this.baseSite}/${Applications.APD}/">
+                  <a
+                    class="content-wrapper"
+                    rel="external"
+                    @click="${this.goToPage}"
+                    href="${this.baseSite}/${Applications.APD}/"
+                  >
                     ${apdIcon}
                     <div class="app-title">${getTranslation(this.language, 'ACTION_POINTS')}</div>
                   </a>
@@ -316,7 +332,12 @@ export class AppSelector extends LitElement {
               : ''}
             ${this.checkAllowedApps([Applications.DASH])
               ? html`
-                  <a class="content-wrapper" @click="${this.goToPage}" href="${this.baseSite}/${Applications.DASH}/">
+                  <a
+                    class="content-wrapper"
+                    rel="external"
+                    @click="${this.goToPage}"
+                    href="${this.baseSite}/${Applications.DASH}/"
+                  >
                     ${dashIcon}
                     <div class="app-title">${getTranslation(this.language, 'DASHBOARDS')}</div>
                   </a>
@@ -325,6 +346,7 @@ export class AppSelector extends LitElement {
 
             <a
               class="content-wrapper"
+              rel="external"
               target="_blank"
               href="https://app.powerbi.com/groups/me/apps/2c83563f-d6fc-4ade-9c10-bbca57ed1ece/reports/5e60ab16-cce5-4c21-8620-de0c4c6415de/ReportSectionfe8562e6ef8c4eddcb52"
             >
@@ -335,7 +357,7 @@ export class AppSelector extends LitElement {
               ${externalIcon}
             </a>
 
-            <a class="datamart content-wrapper" href="https://datamart.unicef.io" target="_blank">
+            <a class="datamart content-wrapper" rel="external" href="https://datamart.unicef.io" target="_blank">
               ${storageIcon}
               <div class="app-title">${getTranslation(this.language, 'DATAMART')}</div>
               ${externalIcon}
@@ -345,7 +367,7 @@ export class AppSelector extends LitElement {
 
         ${this.checkAllowedApps([Applications.ADMIN])
           ? html`
-              <a class="admin" href="${this.baseSite}/${Applications.ADMIN}/">
+              <a class="admin" rel="external" href="${this.baseSite}/${Applications.ADMIN}/">
                 ${adminIcon}
                 <div class="app-title">${getTranslation(this.language, 'ADMIN')}</div>
               </a>
