@@ -51,7 +51,7 @@ export class AppSelector extends LitElement {
       height: 60px;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
+      border-inline-end: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
     }
 
     :host([opened]) {
