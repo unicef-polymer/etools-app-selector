@@ -51,7 +51,7 @@ export class AppSelector extends LitElement {
       height: 60px;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
+      border-inline-end: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
     }
 
     :host([opened]) {
@@ -67,7 +67,7 @@ export class AppSelector extends LitElement {
 
     .dropdown {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 60px;
       box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12),
         0 8px 10px -5px rgba(0, 0, 0, 0.4);
