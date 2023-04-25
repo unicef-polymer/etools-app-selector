@@ -449,19 +449,19 @@ export class AppSelector extends LitElement {
     // check admin app
     const allowedApplications: Applications[] = [];
     const isAdmin: boolean = Boolean(
-      user?.is_superuser === 'True' || user?.groups.find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
+      user.is_superuser === 'True' || (user.groups || []).find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
     );
     if (isAdmin) {
       allowedApplications.push(Applications.ADMIN);
     }
     // check psea app
-    const isTPM: boolean = user.groups.some(({name}: UserGroup) => name === GROUPS.TPM);
+    const isTPM: boolean = (user.groups || []).some(({name}: UserGroup) => name === GROUPS.TPM);
     if (!isTPM) {
       allowedApplications.push(Applications.PSEA);
     }
     // check other apps
     for (const [application, groups] of this.appPermissionsByGroup) {
-      const appAllowed: boolean = user.groups.some(({name}: UserGroup) => groups.includes(name));
+      const appAllowed: boolean = (user.groups || []).some(({name}: UserGroup) => groups.includes(name));
       if (appAllowed) {
         allowedApplications.push(application);
       }
