@@ -185,7 +185,7 @@ export class AppSelector extends LitElement {
     }
   `;
 
-  @property({type: String, attribute: 'language'}) language: string = '';
+  @property({type: String, attribute: 'language'}) language: string = window.EtoolsLanguage || 'en';
   @property({type: String}) iconTitle: string = 'APP_SELECTOR';
   @property({type: String}) baseSite: string = window.location.origin;
   @property({type: Array}) allowedAps: Applications[] = [];
