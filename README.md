@@ -2,6 +2,11 @@
 
 Etools App selector menu
 
+
+## Internationalization
+- `language` property is initialized from window.EtoolsLanguage
+- the component also listems to the `language-changed` event
+
 ## Linting the code
 
 Install local npm packages (run `npm install`)
