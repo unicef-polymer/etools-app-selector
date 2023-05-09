@@ -13,6 +13,7 @@ import {
   tripsIcon,
   unppIcon,
   appsIcon,
+  ampIcon,
   storageIcon
 } from './app-selector-icons';
 import '@material/mwc-icon-button';
@@ -29,7 +30,8 @@ export enum Applications {
   FM = 'fm',
   APD = 'apd',
   DASH = 'dash',
-  ADMIN = 'admin'
+  ADMIN = 'admin',
+  AMP = 'amp'
 }
 
 export enum GROUPS {
@@ -106,6 +108,14 @@ export class AppSelector extends LitElement {
 
     .content-wrapper:hover {
       background: var(--app-selector-item-hover-color, #eeeeee);
+    }
+
+    .empty-wrapper {
+      border-left: none;
+    }
+
+    .empty-wrapper:hover {
+      background: transparent;
     }
 
     .app-title {
@@ -203,7 +213,8 @@ export class AppSelector extends LitElement {
     [Applications.TPM, [GROUPS.USER, GROUPS.TPM]],
     [Applications.AP, [GROUPS.USER, GROUPS.AUDITOR]],
     [Applications.APD, [GROUPS.USER]],
-    [Applications.FM, [GROUPS.USER, GROUPS.TPM]]
+    [Applications.FM, [GROUPS.USER, GROUPS.TPM]],
+    [Applications.AMP, [GROUPS.USER]]
   ]);
 
   render(): unknown {
@@ -377,7 +388,25 @@ export class AppSelector extends LitElement {
               </a>
             </div>
           </div>
-
+ ${
+   this.checkAllowedApps([Applications.AMP])
+     ? html`
+         <span class="module-group-title">${getTranslation(this.language, 'ADMINISTRATION')}</span>
+         <div class="module-group">
+           <a
+             class="content-wrapper"
+             rel="external"
+             @click="${this.goToPage}"
+             href="${this.baseSite}/${Applications.AMP}/"
+           >
+             ${ampIcon}
+             <div class="app-title">${getTranslation(this.language, 'AMP')}</div>
+           </a>
+           <div class="content-wrapper empty-wrapper"></div>
+         </div>
+       `
+     : ''
+ }
           ${
             this.checkAllowedApps([Applications.ADMIN])
               ? html`
@@ -450,7 +479,7 @@ export class AppSelector extends LitElement {
     // check admin app
     const allowedApplications: Applications[] = [];
     const isAdmin: boolean = Boolean(
-      user.is_superuser === 'True' || (user.groups || []).find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
+      Boolean(user.is_superuser) || (user.groups || []).find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
     );
     if (isAdmin) {
       allowedApplications.push(Applications.ADMIN);
