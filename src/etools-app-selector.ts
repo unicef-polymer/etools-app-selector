@@ -479,8 +479,7 @@ export class AppSelector extends LitElement {
     // check admin app
     const allowedApplications: Applications[] = [];
     const isAdmin: boolean = Boolean(
-      String(user.is_superuser).toLowerCase() === 'true' ||
-        (user.groups || []).find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
+      Boolean(user.is_superuser) || (user.groups || []).find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
     );
     if (isAdmin) {
       allowedApplications.push(Applications.ADMIN);
