@@ -17,7 +17,6 @@ import {
 } from './app-selector-icons';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icons/iron-icons.js';
-import '@polymer/iron-icons/device-icons.js';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
 import {getTranslation} from './utils/translation-helper';
 
@@ -62,9 +61,6 @@ export class AppSelector extends LitElement {
 
     apps-button {
       color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
-    }
-    :host([opened]) apps-button {
-      color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
     }
 
     .dropdown {
@@ -182,16 +178,6 @@ export class AppSelector extends LitElement {
     .datamart #storageIcon path {
       fill: var(--light-theme-secondary-color, rgba(0, 0, 0, 0.54));
     }
-
-    paper-icon-button.apps-button {
-      @apply --layout-horizontal;
-      width: 24px;
-      height: 24px;
-      padding: var(--app-selector-button-padding, 18px 24px 18px 24px);
-      color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
-      z-index: 100;
-      box-sizing: content-box !important;
-    }
   `;
 
   // @ts-ignore
@@ -218,6 +204,27 @@ export class AppSelector extends LitElement {
 
   render(): unknown {
     return html`
+      <style>
+        :host {
+          --paper-icon-button: {
+            box-sizing: content-box !important;
+          }
+        }
+        paper-icon-button.apps-button {
+          display: flex;
+          flex-direction: row;
+          width: 24px;
+          height: 24px;
+          padding: var(--app-selector-button-padding, 18px 24px 18px 24px);
+          color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
+          z-index: 100;
+          box-sizing: content-box !important;
+        }
+        paper-icon-button.icon-opened {
+          background: #ffffff;
+          color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
+        }
+      </style>
       <paper-icon-button
         .title="${this.iconTitle === 'APP_SELECTOR' ? getTranslation(this.language, 'APP_SELECTOR') : this.iconTitle}"
         @click="${this.toggleMenu}"
