@@ -12,12 +12,12 @@ import {
   tpmIcon,
   tripsIcon,
   unppIcon,
-  appsIcon,
   ampIcon,
   storageIcon
 } from './app-selector-icons';
-import '@material/mwc-icon-button';
-import '@material/mwc-icon';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/iron-icons/device-icons.js';
 import {EtoolsUser, UserGroup} from '@unicef-polymer/etools-types';
 import {getTranslation} from './utils/translation-helper';
 
@@ -60,10 +60,10 @@ export class AppSelector extends LitElement {
       background: #ffffff;
     }
 
-    mwc-icon-button {
+    apps-button {
       color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
     }
-    :host([opened]) mwc-icon-button {
+    :host([opened]) apps-button {
       color: var(--dark-primary-text-color, rgba(0, 0, 0, 0.87));
     }
 
@@ -189,7 +189,6 @@ export class AppSelector extends LitElement {
       height: 24px;
       padding: var(--app-selector-button-padding, 18px 24px 18px 24px);
       color: var(--header-secondary-text-color, rgba(255, 255, 255, 0.7));
-      border-right: 1px solid var(--light-divider-color, rgba(255, 255, 255, 0.12));
       z-index: 100;
       box-sizing: content-box !important;
     }
@@ -219,12 +218,12 @@ export class AppSelector extends LitElement {
 
   render(): unknown {
     return html`
-      <mwc-icon-button
+      <paper-icon-button
         .title="${this.iconTitle === 'APP_SELECTOR' ? getTranslation(this.language, 'APP_SELECTOR') : this.iconTitle}"
         @click="${this.toggleMenu}"
-      >
-        ${appsIcon}
-      </mwc-icon-button>
+        class="apps-button ${this.opened ? 'icon-opened' : ''}"
+        icon="apps"
+      ></paper-icon-button>
 
       <div class="dropdown">
         ${this.opened
@@ -447,7 +446,7 @@ export class AppSelector extends LitElement {
   handleKeyDown(e: KeyboardEvent) {
     if (e.key === 'Escape') {
       this.opened = false;
-      this.shadowRoot?.querySelector('mwc-icon-button')?.focus();
+      this.shadowRoot?.querySelector('paper-icon-button')?.focus();
     }
   }
 
