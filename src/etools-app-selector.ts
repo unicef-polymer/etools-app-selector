@@ -198,8 +198,7 @@ export class AppSelector extends LitElement {
     [Applications.TPM, [GROUPS.USER, GROUPS.TPM]],
     [Applications.AP, [GROUPS.USER, GROUPS.AUDITOR]],
     [Applications.APD, [GROUPS.USER]],
-    [Applications.FM, [GROUPS.USER, GROUPS.TPM]],
-    [Applications.AMP, [GROUPS.USER]]
+    [Applications.FM, [GROUPS.USER, GROUPS.TPM]]
   ]);
 
   render(): unknown {
@@ -482,8 +481,9 @@ export class AppSelector extends LitElement {
       this.allowedAps = [];
       return;
     }
+    // show AMP app for all users
+    const allowedApplications: Applications[] = [Applications.AMP];
     // check admin app
-    const allowedApplications: Applications[] = [];
     const isAdmin: boolean = Boolean(
       Boolean(user.is_superuser) || (user.groups || []).find(({name}: UserGroup) => name === GROUPS.CO_ADMINISTRATOR)
     );
