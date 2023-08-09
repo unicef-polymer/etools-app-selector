@@ -22,6 +22,7 @@ import {getTranslation} from './utils/translation-helper';
 
 export enum Applications {
   PMP = 'pmp',
+  EPD = 'epd',
   T2F = 't2f',
   TPM = 'tpm',
   AP = 'ap',
@@ -263,6 +264,21 @@ export class AppSelector extends LitElement {
                     `
                   : ''
               }
+                ${
+                  this.checkAllowedApps([Applications.EPD])
+                    ? html`
+                        <a
+                          class="content-wrapper"
+                          rel="external"
+                          @click="${this.goToPage}"
+                          href="${this.baseSite}/${Applications.EPD}/"
+                        >
+                          ${pmpIcon}
+                          <div class="app-title">${getTranslation(this.language, 'EPD')}</div>
+                        </a>
+                      `
+                    : ''
+                }
             </div>
 
             ${
@@ -476,11 +492,7 @@ export class AppSelector extends LitElement {
     }
   }
 
-  private setPermissions(user: EtoolsUser): void {
-    if (!user) {
-      this.allowedAps = [];
-      return;
-    }
+  private getPresetAllowedApps(user: EtoolsUser) {
     // show AMP app for all users
     const allowedApplications: Applications[] = [Applications.AMP];
     // check admin app
@@ -492,10 +504,24 @@ export class AppSelector extends LitElement {
     }
     // check psea app
     const isTPM: boolean = (user.groups || []).some(({name}: UserGroup) => name === GROUPS.TPM);
+    const isAuditor: boolean = (user.groups || []).some(({name}: UserGroup) => name === GROUPS.AUDITOR);
     if (!isTPM) {
       allowedApplications.push(Applications.PSEA);
     }
-    // check other apps
+    if (!user.is_unicef_user && !isTPM && !isAuditor) {
+      allowedApplications.push(Applications.EPD);
+    }
+    return allowedApplications;
+  }
+
+  private setPermissions(user: EtoolsUser): void {
+    if (!user) {
+      this.allowedAps = [];
+      return;
+    }
+    const allowedApplications: Applications[] = this.getPresetAllowedApps(user);
+
+    // check apps permissions
     for (const [application, groups] of this.appPermissionsByGroup) {
       const appAllowed: boolean = (user.groups || []).some(({name}: UserGroup) => groups.includes(name));
       if (appAllowed) {
